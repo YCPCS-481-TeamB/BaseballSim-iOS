@@ -13,6 +13,9 @@
 		3C680DE01DAB5A6300A9F092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C680DDF1DAB5A6300A9F092 /* Assets.xcassets */; };
 		3C680DE31DAB5A6300A9F092 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C680DE11DAB5A6300A9F092 /* LaunchScreen.storyboard */; };
 		3C680DEE1DAB5A6300A9F092 /* BaseballSimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DED1DAB5A6300A9F092 /* BaseballSimTests.swift */; };
+		3C680DF91DAB625100A9F092 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DF81DAB625100A9F092 /* User.swift */; };
+		3C680DFB1DAB668A00A9F092 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DFA1DAB668A00A9F092 /* UserService.swift */; };
+		3C680DFD1DAB66CB00A9F092 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DFC1DAB66CB00A9F092 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		3C680DE91DAB5A6300A9F092 /* BaseballSimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaseballSimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C680DED1DAB5A6300A9F092 /* BaseballSimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballSimTests.swift; sourceTree = "<group>"; };
 		3C680DEF1DAB5A6300A9F092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C680DF81DAB625100A9F092 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3C680DFA1DAB668A00A9F092 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		3C680DFC1DAB66CB00A9F092 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,9 @@
 				3C680DDF1DAB5A6300A9F092 /* Assets.xcassets */,
 				3C680DE11DAB5A6300A9F092 /* LaunchScreen.storyboard */,
 				3C680DE41DAB5A6300A9F092 /* Info.plist */,
+				3C680DF81DAB625100A9F092 /* User.swift */,
+				3C680DFA1DAB668A00A9F092 /* UserService.swift */,
+				3C680DFC1DAB66CB00A9F092 /* Settings.swift */,
 			);
 			path = BaseballSim;
 			sourceTree = "<group>";
@@ -199,8 +208,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C680DFB1DAB668A00A9F092 /* UserService.swift in Sources */,
 				3C680DDB1DAB5A6300A9F092 /* ViewController.swift in Sources */,
 				3C680DD91DAB5A6300A9F092 /* AppDelegate.swift in Sources */,
+				3C680DF91DAB625100A9F092 /* User.swift in Sources */,
+				3C680DFD1DAB66CB00A9F092 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
