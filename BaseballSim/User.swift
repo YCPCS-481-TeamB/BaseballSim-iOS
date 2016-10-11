@@ -16,8 +16,9 @@ class User
     var username:String
     var email:String
     var date_created:Date
+    var auth_token:String
     
-    init(id:Int, first_name:String, last_name:String, username:String, email:String, date_created:Date)
+    init(id:Int, first_name:String, last_name:String, username:String, email:String, date_created:Date, auth_token:String)
     {
         self.id = id
         self.first_name = first_name
@@ -25,6 +26,7 @@ class User
         self.username = username
         self.email = email
         self.date_created = date_created
+        self.auth_token = auth_token
     }
     
 }
