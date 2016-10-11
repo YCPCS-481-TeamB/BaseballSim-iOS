@@ -16,6 +16,7 @@ class ViewController: UIViewController
     var url = "https://baseballsim-koopaluigi.c9users.io/api/players"   //Testing
     //var url = "https://baseballsim.herokuapp.com/api/players"         //Heroku
     var params: [String:AnyObject] = [:]
+    var headers: [String:String] = ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrb29wYWx1aWdpIiwicGFzc3dvcmQiOiIkMmEkMTAkeldlNFdVcG4vLi5yWTdpeU90YXliT0ZncGVkLjNJbG5IWVhtdHBBYTA1OUZmQXpmVUtBaWkiLCJmaXJzdG5hbWUiOiJDb29wZXIiLCJsYXN0bmFtZSI6Ikx1ZXRqZSIsImVtYWlsIjoia29vcGFsdWlnaUBob3RtYWlsLmNvbSIsImRhdGVfY3JlYXRlZCI6IjIwMTYtMTAtMDNUMTY6MTM6NDguMjgwWiIsImlhdCI6MTQ3NjE1NjMyNH0.va7_WXrC6B7ngIUl-cp4qqCus8C0GViKnsG_LMw2_Ss":"x-access-token"]
     
     
     override func viewDidLoad() {
@@ -23,7 +24,7 @@ class ViewController: UIViewController
         
         service = UserService()
         
-        service.getRequest(url: url, params: params)
+        service.getRequest(url: url, params: params, headers: headers)
         
         
     }

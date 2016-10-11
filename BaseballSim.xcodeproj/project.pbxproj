@@ -83,13 +83,13 @@
 		3C680DD71DAB5A6300A9F092 /* BaseballSim */ = {
 			isa = PBXGroup;
 			children = (
+				3C680DFF1DACDBB500A9F092 /* model */,
 				3C680DD81DAB5A6300A9F092 /* AppDelegate.swift */,
-				3C680DDA1DAB5A6300A9F092 /* ViewController.swift */,
+				3C680DFE1DACD9AB00A9F092 /* controller */,
 				3C680DDC1DAB5A6300A9F092 /* Main.storyboard */,
 				3C680DDF1DAB5A6300A9F092 /* Assets.xcassets */,
 				3C680DE11DAB5A6300A9F092 /* LaunchScreen.storyboard */,
 				3C680DE41DAB5A6300A9F092 /* Info.plist */,
-				3C680DF81DAB625100A9F092 /* User.swift */,
 				3C680DFA1DAB668A00A9F092 /* UserService.swift */,
 				3C680DFC1DAB66CB00A9F092 /* Settings.swift */,
 			);
@@ -103,6 +103,22 @@
 				3C680DEF1DAB5A6300A9F092 /* Info.plist */,
 			);
 			path = BaseballSimTests;
+			sourceTree = "<group>";
+		};
+		3C680DFE1DACD9AB00A9F092 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				3C680DDA1DAB5A6300A9F092 /* ViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		3C680DFF1DACDBB500A9F092 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3C680DF81DAB625100A9F092 /* User.swift */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

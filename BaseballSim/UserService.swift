@@ -18,7 +18,7 @@ class UserService
         self.settings = Settings()
     }
     
-    func getRequest(url:String, params: [String:AnyObject])
+    func getRequest(url:String, params: [String:AnyObject], headers: [String:String]?)
     {
         let thisUrl = URL(string: url)
         
@@ -26,7 +26,10 @@ class UserService
         
         request.httpMethod = "GET"
         
-        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrb29wYWx1aWdpIiwicGFzc3dvcmQiOiIkMmEkMTAkeldlNFdVcG4vLi5yWTdpeU90YXliT0ZncGVkLjNJbG5IWVhtdHBBYTA1OUZmQXpmVUtBaWkiLCJmaXJzdG5hbWUiOiJDb29wZXIiLCJsYXN0bmFtZSI6Ikx1ZXRqZSIsImVtYWlsIjoia29vcGFsdWlnaUBob3RtYWlsLmNvbSIsImRhdGVfY3JlYXRlZCI6IjIwMTYtMTAtMDNUMTY6MTM6NDguMjgwWiIsImlhdCI6MTQ3NjE1NjMyNH0.va7_WXrC6B7ngIUl-cp4qqCus8C0GViKnsG_LMw2_Ss", forHTTPHeaderField: "x-access-token")
+        for header in headers!
+        {
+            request.addValue(header.key, forHTTPHeaderField: header.value)
+        }
         
         let task = URLSession.shared.dataTask(with: request)
         {
