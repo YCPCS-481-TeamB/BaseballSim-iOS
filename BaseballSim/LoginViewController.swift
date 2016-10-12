@@ -28,9 +28,20 @@ class LoginViewController: UIViewController
         
         service = UserService()
         
+        let requests = DispatchGroup.init()
+        
         //service.getRequest(url: url, params: params, headers: headers)
         
-        service.postRequest(url: url, params: params, headers: postHeaders)
+        requests.enter()
+        
+        service.postRequest(url: url, params: params, headers: postHeaders, finished: {
+            () in
+            requests.leave()
+        })
+        
+        requests.notify(queue: DispatchQueue.main, execute: {
+            
+        })
         
         let p = UserDefaults.standard
         let key = "token"
@@ -58,12 +69,15 @@ class LoginViewController: UIViewController
         }
         else
         {
+            errorLabel.text = service.login(username: usernameTextField.text!, password: passwordTextField.text!)
+            /*
             errorLabel.text = service.getPostDictionary().value(forKey: "token") as! String?
             let p = UserDefaults.standard
             let key = "token"
             let value = service.getPostDictionary().value(forKey: "token")
             p.set(value, forKey: key)
             p.synchronize()
+            */
         }
     }
 
