@@ -22,6 +22,7 @@ class UserService
     var dataHeaders:[String:String]!
     var error:String!
     var userInformation:[String:String]!
+    var user:User!
     
     init()
     {
@@ -29,7 +30,7 @@ class UserService
         self.getDictionary = [:]
         self.postDictionary = [:]
         self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"
-        self.loginUrls = ["users/token", "teams", "games"]
+        self.loginUrls = ["users/token", "users", "teams", "games"]
         self.loginParams = ["username":"koopaluigi", "password":"toadstool"]
         self.loginHeaders = [:]
         self.dataParams = [:]
@@ -71,14 +72,13 @@ class UserService
             //Convert json into NSDictionary
             do
             {
-                get = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                get = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSDictionary
             }
             catch let error as NSError
             {
                 print(error.localizedDescription)
             }
             self.getDictionary = get
-            print(self.getDictionary)
             
             finished()
         }
@@ -146,7 +146,6 @@ class UserService
                 print(error.localizedDescription)
             }
             self.postDictionary = post
-            print(self.postDictionary)
             
             //Task is finished
             finished()
@@ -175,7 +174,7 @@ class UserService
         postRequest(url: url, params: loginParams as [String : AnyObject]?, headers: loginHeaders, finished: {
             () in
             loginRequest.leave()
-        })        
+        })
         
         loginRequest.wait()
         
@@ -188,14 +187,51 @@ class UserService
         
         dataHeaders["x-access-token"] = self.postDictionary.value(forKey: "token") as! String?
         
-        //Request user's information
+        //Get basic user information
+        url = apiUrl + loginUrls[1]
+        
+        dataRequest.enter()
+        
+        getRequest(url: url, params: dataParams as [String : AnyObject], headers: dataHeaders) { 
+            () in
+            dataRequest.leave()
+        }
+        
+        dataRequest.wait()
+        
+        
+        let val = getDictionary.value(forKey: "users")! as AnyObject
+        
+        //Find user within user
+        for i in 0...(val.count-1)
+        {
+            
+            let innerVal = val[i]! as AnyObject
+            //If user is found create user
+            if(innerVal.value(forKey: "username") as! String == username)
+            {
+                //Set user information
+                let id = innerVal.value(forKey: "id") as! Int
+                let firstname = innerVal.value(forKey: "firstname") as! String
+                let lastname = innerVal.value(forKey: "lastname") as! String
+                let username = innerVal.value(forKey: "username") as! String
+                let email = innerVal.value(forKey: "email") as! String
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                let auth_token =  dataHeaders["x-access-token"]!
+                
+                user =  User(id: id, first_name: firstname, last_name: lastname, username: username, email: email, date_created: date_created, auth_token: auth_token)
+            }
+ 
+        }
+ 
+        //Request rest of user's information
         for dataUrl in self.loginUrls
         {
-            if(url != "users/token")
+            if(dataUrl != "users/token" || dataUrl != "users")
             {
                 dataRequest.enter()
                 
-                url = self.apiUrl + dataUrl
+                url = self.apiUrl + "users/\(user.id)/" + dataUrl
                 
                 self.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
                     () in
@@ -205,13 +241,46 @@ class UserService
             
             dataRequest.wait()
             
-            for (key, value) in self.getDictionary
+            if(dataUrl == "teams")
             {
-                self.userInformation[key as! String] = value as? String
+                let teamVal = getDictionary.value(forKey: "teams")! as AnyObject
+                
+                //Find user within user
+                for i in 0...(teamVal.count-1)
+                {
+                    let innerVal = teamVal[i]! as AnyObject
+                    
+                    let id = innerVal.value(forKey: "id") as! Int
+                    let league_id = innerVal.value(forKey: "league_id") as! Int
+                    let name = innerVal.value(forKey: "name") as! String
+                    let date_created = innerVal.value(forKey: "date_created") as! String
+                    
+                    user.setTeams(id: id, league_id: league_id, name: name, date_created: date_created)
+                }
             }
-            print("Dictionary:\(self.getDictionary)")
+            
+            if(dataUrl == "games")
+            {
+                let gameVal = getDictionary.value(forKey: "games")! as AnyObject
+                
+                //Find user within user
+                for i in 0...(gameVal.count-1)
+                {
+                    let innerVal = gameVal[i]! as AnyObject
+                    
+                    let id = innerVal.value(forKey: "id") as! Int
+                    let league_id = innerVal.value(forKey: "league_id") as! Int
+                    let field_id = innerVal.value(forKey: "field_id") as! Int
+                    let team1_id = innerVal.value(forKey: "team1_id") as! Int
+                    let team2_id = innerVal.value(forKey: "team2_id") as! Int
+                    let date_created = innerVal.value(forKey: "date_created") as! String
+                    
+                    user.setGames(id: id, league_id: league_id, field_id: field_id, team1_id: team1_id, team2_id: team2_id, date_created: date_created)
+                }
+            }
+            
         }
-        
+        user.printVals()
         return ""
     }
     
