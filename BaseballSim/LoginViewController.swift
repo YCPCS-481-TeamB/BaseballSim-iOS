@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class LoginViewController: UIViewController
 {
     // MARK: Properties
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     var usersCollection = [User]()
     var service:UserService!
     var url = "https://baseballsim-koopaluigi.c9users.io/api/users/token"   //Testing
@@ -28,12 +32,40 @@ class ViewController: UIViewController
         
         service.postRequest(url: url, params: params, headers: postHeaders)
         
+        let p = UserDefaults.standard
+        let key = "token"
+        if p.object(forKey: key) == nil
+        {
+            
+        }
+        else
+        {
+            let value = p.string(forKey: key)
+            errorLabel.text = value
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func loginButton(_ sender: UIButton)
+    {
+        if usernameTextField.text == "" || passwordTextField.text == ""
+        {
+            errorLabel.text = "Please enter a correct username and password."
+        }
+        else
+        {
+            errorLabel.text = service.getPostDictionary().value(forKey: "token") as! String?
+            let p = UserDefaults.standard
+            let key = "token"
+            let value = service.getPostDictionary().value(forKey: "token")
+            p.set(value, forKey: key)
+            p.synchronize()
+        }
+    }
 
 }
 

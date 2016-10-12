@@ -12,17 +12,25 @@ import UIKit
 class UserService
 {
     var settings:Settings!
+    var getDictionary:NSDictionary!
+    var postDictionary:NSDictionary!
     
     init()
     {
         self.settings = Settings()
+        self.getDictionary = [:]
+        self.postDictionary = [:]
     }
     
     func getRequest(url:String, params: [String:AnyObject], headers: [String:String]?)
     {
-        let thisUrl = URL(string: url)
+        guard let thisUrl = URL(string: url) else
+        {
+            print("Error: URL is invalid")
+            return
+        }
         
-        var request = URLRequest(url: thisUrl!)
+        var request = URLRequest(url: thisUrl)
         
         request.httpMethod = "GET"
         
@@ -52,6 +60,7 @@ class UserService
                 if let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
                 {
                     print(jsonDict)
+                    self.getDictionary = jsonDict
                     
                     //let playerId = jsonDict["id"] as? String
                     //print(playerId!)
@@ -68,9 +77,13 @@ class UserService
     
     func postRequest(url:String, params: [String:AnyObject]?, headers: [String:String]?)
     {
-        let thisUrl = URL(string: url)
+        guard let thisUrl = URL(string: url) else
+        {
+            print("Error: URL is invalid")
+            return
+        }
         
-        var request = URLRequest(url: thisUrl!)
+        var request = URLRequest(url: thisUrl)
         
         request.httpMethod = "POST"
         
@@ -104,28 +117,39 @@ class UserService
                 return
             }
             
-            //Print out the response from the server
+            /*
+            //Print out the response from the server for debugging
             let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             print("responseString = \(responseString)")
+            */
+            
+            var post:NSDictionary = [:]
             
             //Convert json into NSDictionary
             do
             {
-                if let jsonDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
-                {
-                    print(jsonDict)
-                    
-                    //let firstNameValue = jsonDict["username"] as? String
-                    //print(firstNameValue!)
-                }
+                post = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
             }
             catch let error as NSError
             {
                 print(error.localizedDescription)
             }
+            self.postDictionary = post
+            print(self.postDictionary)
         }
         
         task.resume()
+        
+    }
+    
+    func getGetDictionary() -> NSDictionary
+    {
+        return getDictionary
+    }
+    
+    func getPostDictionary() -> NSDictionary
+    {
+        return postDictionary
     }
 
 }
