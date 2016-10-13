@@ -14,15 +14,23 @@ class AddTeamTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var leagueIdTextField: UITextField!
     
+    var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+    var teamService = TeamService(auth_token: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //Get user info
+        let defaults = UserDefaults.standard
+        let key = "user"
+        if defaults.object(forKey: key) != nil
+        {
+            if let value = defaults.object(forKey: key) as? NSData
+            {
+                user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
+                teamService = TeamService(auth_token: user.auth_token)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -39,10 +47,8 @@ class AddTeamTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == "addTeam"
-        {
-            //Add team to database
-        }
+        //Add team to database
+        teamService.addPlayer(name: nameTextField.text!, league_id: leagueIdTextField.text!)
     }
  
     

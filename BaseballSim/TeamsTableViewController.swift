@@ -42,6 +42,7 @@ class TeamsTableViewController: UITableViewController
     
     @IBAction func addTeam(segue:UIStoryboardSegue)
     {
+        print("WAS IN ADD TEAM")
         /*
          if let addTeamViewController = segue.source as? AddTeamTableViewController
          {

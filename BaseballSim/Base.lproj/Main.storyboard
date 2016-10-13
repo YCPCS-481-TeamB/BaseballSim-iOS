@@ -71,25 +71,6 @@
             </objects>
             <point key="canvasLocation" x="41" y="123"/>
         </scene>
-        <!--Games-->
-        <scene sceneID="1in-zh-3bV">
-            <objects>
-                <viewController id="gs4-9p-gOq" userLabel="Games" customClass="GamesViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OIK-pg-Z8T"/>
-                        <viewControllerLayoutGuide type="bottom" id="1rm-hz-lgC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oEA-Op-6GI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="My Games" id="6Y4-zu-we8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QIO-Ar-AtL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2488.8000000000002" y="457.42128935532236"/>
-        </scene>
         <!--My Teams-->
         <scene sceneID="btp-oS-P0D">
             <objects>
@@ -103,7 +84,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ub4-cU-lJY" id="iHc-Rj-tSD">
-                                    <frame key="frameInset" width="342" height="74"/>
+                                    <frame key="frameInset" width="342" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TeamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gci-K1-CeR">
@@ -169,7 +150,7 @@
                     <navigationItem key="navigationItem" title="My Teams" id="NbJ-no-fJ8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OZb-cZ-ltz">
                             <connections>
-                                <segue destination="9AD-yx-9RK" kind="presentation" id="tit-zW-6LW"/>
+                                <segue destination="9AD-yx-9RK" kind="presentation" identifier="" id="tit-zW-6LW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -197,8 +178,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-Zh-2YG">
-                                                    <frame key="frameInset" minX="8" minY="6" width="359" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <frame key="frameInset" minX="8" minY="6" height="30" maxX="-8"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -211,14 +192,14 @@
                             <tableViewSection headerTitle="League Id" id="4gb-O8-XWh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="UmL-sW-8LG">
-                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UmL-sW-8LG" id="Jf7-Dz-MAj">
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LLd-FN-Oc6">
-                                                    <frame key="frameInset" minX="8" minY="8" width="359" height="30"/>
+                                                    <frame key="frameInset" minX="8" minY="6" width="768" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -306,12 +287,41 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="gs4-9p-gOq" kind="relationship" relationship="rootViewController" id="4iU-bL-Bdv"/>
+                        <segue destination="SRY-Ds-SNQ" kind="relationship" relationship="rootViewController" id="6ns-R6-peS"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCx-qT-XQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1549.5999999999999" y="457.42128935532236"/>
+        </scene>
+        <!--My Games-->
+        <scene sceneID="GFe-ZL-FDh">
+            <objects>
+                <tableViewController id="SRY-Ds-SNQ" customClass="GamesTableViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="GJ3-5h-BXN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GameCell" id="f9E-Z5-UBQ" customClass="GamesTableViewCell" customModule="BaseballSim" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9E-Z5-UBQ" id="2gk-XJ-dJQ">
+                                    <frame key="frameInset" width="342" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SRY-Ds-SNQ" id="TtB-7A-omL"/>
+                            <outlet property="delegate" destination="SRY-Ds-SNQ" id="owu-fy-cbW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Games" id="bJR-Pt-UKG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZFh-v5-yZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2489" y="457"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f3S-0o-KFI">

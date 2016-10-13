@@ -11,9 +11,7 @@ import UIKit
 
 class UserService
 {
-    var settings:Settings!
-    var getDictionary:NSDictionary!
-    var postDictionary:NSDictionary!
+    var requests:Request
     var apiUrl:String!
     var loginUrls:[String]!
     var loginParams:[String:String]!
@@ -26,9 +24,7 @@ class UserService
     
     init()
     {
-        self.settings = Settings()
-        self.getDictionary = [:]
-        self.postDictionary = [:]
+        self.requests = Request()
         self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"      //Testing
         //self.apiUrl = "https://baseballsim.herokuapp.com/api/"            //Heroku
         self.loginUrls = ["users/token", "users", "teams", "games"]
@@ -46,129 +42,12 @@ class UserService
         return self.user
     }
     
-    func getRequest(url:String, params: [String:AnyObject], headers: [String:String]?, finished: @escaping () -> Void)
-    {
-        guard let thisUrl = URL(string: url) else
-        {
-            print("Error: URL is invalid")
-            return
-        }
         
-        var request = URLRequest(url: thisUrl)
-        
-        request.httpMethod = "GET"
-        
-        for header in headers!
-        {
-            request.addValue(header.value, forHTTPHeaderField: header.key)
-        }
-        
-        let task = URLSession.shared.dataTask(with: request)
-        {
-            data, response, error in
-            
-            //Check for an error
-            if error != nil
-            {
-                print("Error in GET: \(error)")
-                return
-            }
-            
-            var get:NSDictionary = [:]
-            
-            //Convert json into NSDictionary
-            do
-            {
-                get = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSDictionary
-            }
-            catch let error as NSError
-            {
-                print(error.localizedDescription)
-            }
-            self.getDictionary = get
-            
-            finished()
-        }
-        
-        task.resume()
-    }
-    
-    func postRequest(url:String, params: [String:AnyObject]?, headers: [String:String]?, finished: @escaping () -> Void)
-    {
-        guard let thisUrl = URL(string: url) else
-        {
-            print("Error: URL is invalid")
-            return
-        }
-        
-        var request = URLRequest(url: thisUrl)
-        
-        request.httpMethod = "POST"
-        
-        //Set parameters
-        var body = ""
-        //Combines parameters into string to be placed into the body
-        for (i, param) in (params?.enumerated())!
-        {
-            body += "\(param.key)=\(param.value)"
-            if i != (params?.count)!-1
-            {
-                body += "&"
-            }
-        }
-        
-        request.httpBody = body.data(using: String.Encoding.utf8)
-        
-        for header in headers!
-        {
-            request.addValue(header.key, forHTTPHeaderField: header.value)
-        }
-        
-        let task = URLSession.shared.dataTask(with: request)
-        {
-            data, response, error -> Void in
-            
-            //Check for an error
-            if error != nil
-            {
-                print("Error in POST: \(error)")
-                return
-            }
-            
-            /*
-            //Print out the response from the server for debugging
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
-            */
-            
-            var post:NSDictionary = [:]
-            
-            //Convert json into NSDictionary
-            do
-            {
-                post = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
-            }
-            catch let error as NSError
-            {
-                print(error.localizedDescription)
-            }
-            self.postDictionary = post
-            
-            //Task is finished
-            finished()
-        }
-        
-        task.resume()
-        
-    }
-    
     //Go through the http requests to get all the information for login
     func login(username:String, password:String) -> String
     {
         let loginRequest = DispatchGroup.init()
         let dataRequest = DispatchGroup.init()
-        
-        //service.getRequest(url: url, params: params, headers: headers)
         
         //Gets token of user if user exists
         
@@ -178,7 +57,7 @@ class UserService
         
         loginRequest.enter()
         
-        postRequest(url: url, params: loginParams as [String : AnyObject]?, headers: loginHeaders, finished: {
+        requests.postRequest(url: url, params: loginParams as [String : AnyObject]?, headers: loginHeaders, finished: {
             () in
             loginRequest.leave()
         })
@@ -186,20 +65,20 @@ class UserService
         loginRequest.wait()
         
         //If unsuccessful login return error
-        if(self.postDictionary.value(forKey: "success") as! Bool == false)
+        if(requests.postDictionary.value(forKey: "success") as! Bool == false)
         {
-            self.error = self.postDictionary.value(forKey: "error") as! String!
+            self.error = requests.postDictionary.value(forKey: "error") as! String!
             return error
         }
         
-        dataHeaders["x-access-token"] = self.postDictionary.value(forKey: "token") as! String?
+        dataHeaders["x-access-token"] = requests.postDictionary.value(forKey: "token") as! String?
         
         //Get basic user information
         url = apiUrl + loginUrls[1]
         
         dataRequest.enter()
         
-        getRequest(url: url, params: dataParams as [String : AnyObject], headers: dataHeaders) { 
+        requests.getRequest(url: url, params: dataParams as [String : AnyObject], headers: dataHeaders) {
             () in
             dataRequest.leave()
         }
@@ -207,7 +86,7 @@ class UserService
         dataRequest.wait()
         
         
-        let val = getDictionary.value(forKey: "users")! as AnyObject
+        let val = requests.getDictionary.value(forKey: "users")! as AnyObject
         
         //Find user within user
         for i in 0...(val.count-1)
@@ -240,7 +119,7 @@ class UserService
                 
                 url = self.apiUrl + "users/\(user.id)/" + dataUrl
                 
-                self.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
+                requests.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
                     () in
                     dataRequest.leave()
                 })
@@ -248,9 +127,9 @@ class UserService
             
             dataRequest.wait()
             
-            if(dataUrl == "teams" && (getDictionary["teams"]! as AnyObject).count != 0)
+            if(dataUrl == "teams" && (requests.getDictionary["teams"]! as AnyObject).count != 0)
             {
-                let teamVal = getDictionary.value(forKey: "teams")! as AnyObject
+                let teamVal = requests.getDictionary.value(forKey: "teams")! as AnyObject
                 
                 //Find user within user
                 for i in 0...(teamVal.count-1)
@@ -266,9 +145,9 @@ class UserService
                 }
             }
  
-            if(dataUrl == "games" && (getDictionary["games"]! as AnyObject).count != 0)
+            if(dataUrl == "games" && (requests.getDictionary["games"]! as AnyObject).count != 0)
             {
-                let gameVal = getDictionary.value(forKey: "games")! as AnyObject
+                let gameVal = requests.getDictionary.value(forKey: "games")! as AnyObject
                 
                 //Find user within user
                 for i in 0...(gameVal.count-1)
