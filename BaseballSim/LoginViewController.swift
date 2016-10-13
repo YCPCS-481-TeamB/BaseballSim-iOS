@@ -17,43 +17,22 @@ class LoginViewController: UIViewController
     
     var usersCollection = [User]()
     var service:UserService!
-    var url = "https://baseballsim-koopaluigi.c9users.io/api/users/token"   //Testing
-    //var url = "https://baseballsim.herokuapp.com/api/players"         //Heroku
-    var params: [String:AnyObject] = ["username":"koopaluigi" as AnyObject, "password":"toadstool" as AnyObject]
-    var headers: [String:String] = ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrb29wYWx1aWdpIiwicGFzc3dvcmQiOiIkMmEkMTAkeldlNFdVcG4vLi5yWTdpeU90YXliT0ZncGVkLjNJbG5IWVhtdHBBYTA1OUZmQXpmVUtBaWkiLCJmaXJzdG5hbWUiOiJDb29wZXIiLCJsYXN0bmFtZSI6Ikx1ZXRqZSIsImVtYWlsIjoia29vcGFsdWlnaUBob3RtYWlsLmNvbSIsImRhdGVfY3JlYXRlZCI6IjIwMTYtMTAtMDNUMTY6MTM6NDguMjgwWiIsImlhdCI6MTQ3NjE1NjMyNH0.va7_WXrC6B7ngIUl-cp4qqCus8C0GViKnsG_LMw2_Ss":"x-access-token"]
-    var postHeaders: [String:String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         service = UserService()
         
-        let requests = DispatchGroup.init()
-        
-        //service.getRequest(url: url, params: params, headers: headers)
-        
-        requests.enter()
-        
-        service.postRequest(url: url, params: params, headers: postHeaders, finished: {
-            () in
-            requests.leave()
-        })
-        
-        requests.notify(queue: DispatchQueue.main, execute: {
-            
-        })
-        
+        /*
+        //If user is already logged in
         let p = UserDefaults.standard
         let key = "token"
-        if p.object(forKey: key) == nil
-        {
-            
-        }
-        else
+        if p.object(forKey: key) != nil
         {
             let value = p.string(forKey: key)
             errorLabel.text = value
         }
+        */
         
     }
     override func didReceiveMemoryWarning() {
@@ -73,11 +52,14 @@ class LoginViewController: UIViewController
             /*
             errorLabel.text = service.getPostDictionary().value(forKey: "token") as! String?
             let p = UserDefaults.standard
-            let key = "token"
-            let value = service.getPostDictionary().value(forKey: "token")
+            let key = "user"
+            let value = service.user
             p.set(value, forKey: key)
             p.synchronize()
             */
+            
+            //Go to logged in views
+            
         }
     }
 

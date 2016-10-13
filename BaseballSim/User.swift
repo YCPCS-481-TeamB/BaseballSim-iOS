@@ -55,15 +55,20 @@ class User
         print(email)
         print(date_created)
         print(auth_token)
-        for i in 0...teams.count-1
+        if(teams.count != 0)
         {
-            teams[i].printVals()
+            for i in 0...teams.count-1
+            {
+                teams[i].printVals()
+            }
         }
-        for i in 0...games.count-1
+        if(games.count != 0)
         {
-            games[i].printVals()
+            for i in 0...games.count-1
+            {
+                games[i].printVals()
+            }
         }
-        
     }
     
 }

@@ -29,7 +29,8 @@ class UserService
         self.settings = Settings()
         self.getDictionary = [:]
         self.postDictionary = [:]
-        self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"
+        self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"      //Testing
+        //self.apiUrl = "https://baseballsim.herokuapp.com/api/"            //Heroku
         self.loginUrls = ["users/token", "users", "teams", "games"]
         self.loginParams = ["username":"koopaluigi", "password":"toadstool"]
         self.loginHeaders = [:]
@@ -241,7 +242,7 @@ class UserService
             
             dataRequest.wait()
             
-            if(dataUrl == "teams")
+            if(dataUrl == "teams" && (getDictionary["teams"]! as AnyObject).count != 0)
             {
                 let teamVal = getDictionary.value(forKey: "teams")! as AnyObject
                 
@@ -259,7 +260,7 @@ class UserService
                 }
             }
             
-            if(dataUrl == "games")
+            if(dataUrl == "games" && (getDictionary["games"]! as AnyObject).count != 0)
             {
                 let gameVal = getDictionary.value(forKey: "games")! as AnyObject
                 
@@ -282,16 +283,6 @@ class UserService
         }
         user.printVals()
         return ""
-    }
-    
-    func getGetDictionary() -> NSDictionary
-    {
-        return getDictionary
-    }
-    
-    func getPostDictionary() -> NSDictionary
-    {
-        return postDictionary
     }
 
 }
