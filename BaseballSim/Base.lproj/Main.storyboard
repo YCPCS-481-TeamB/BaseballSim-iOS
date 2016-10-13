@@ -82,50 +82,180 @@
                     <view key="view" contentMode="scaleToFill" id="oEA-Op-6GI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XZ-8z-JnM" userLabel="My Games">
-                                <frame key="frameInset" minX="92" minY="28" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Games" image="GameIcon" id="rJg-iH-lhg" userLabel="My Games"/>
+                    <navigationItem key="navigationItem" title="My Games" id="6Y4-zu-we8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QIO-Ar-AtL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1549.5999999999999" y="457.42128935532236"/>
+            <point key="canvasLocation" x="2488.8000000000002" y="457.42128935532236"/>
         </scene>
-        <!--Teams-->
-        <scene sceneID="uqA-2X-zZP">
+        <!--My Teams-->
+        <scene sceneID="btp-oS-P0D">
             <objects>
-                <viewController id="uYr-bF-QaV" userLabel="Teams" customClass="TeamsViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iU1-W1-1MU"/>
-                        <viewControllerLayoutGuide type="bottom" id="a6x-8w-Cfc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wAB-zi-ghn">
+                <tableViewController id="KgV-mC-AAy" customClass="TeamsTableViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="pCl-RL-N6R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Teams" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="str-4a-2rD" userLabel="My Teams">
-                                <frame key="frameInset" minX="99" minY="28" width="176" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="My Teams" image="TeamIcon" id="64b-oL-SBW" userLabel="My Teams"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ljQ-8j-WeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeamCell" id="ub4-cU-lJY" customClass="TeamsTableViewCell" customModule="BaseballSim" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ub4-cU-lJY" id="iHc-Rj-tSD">
+                                    <frame key="frameInset" width="342" height="74"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TeamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gci-K1-CeR">
+                                            <frame key="frameInset" width="74" height="74"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIn-tQ-v2e">
+                                            <frame key="frameInset" minX="82" minY="45" width="30" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY9-7q-QJ1">
+                                            <frame key="frameInset" minX="82" minY="8" width="103" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-Lp-YhQ">
+                                            <frame key="frameInset" minX="193" minY="8" width="141" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="League Id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kE-yB-Zqo">
+                                            <frame key="frameInset" minX="193" minY="45" width="87" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4q-l3-i0G">
+                                            <frame key="frameInset" minX="288" minY="45" width="46" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scu-bN-qPr">
+                                            <frame key="frameInset" minX="120" minY="45" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="idLabel" destination="Scu-bN-qPr" id="56b-3A-jxY"/>
+                                    <outlet property="leagueIdLabel" destination="V4q-l3-i0G" id="D5Q-dQ-rtW"/>
+                                    <outlet property="teamNameLabel" destination="Q4P-Lp-YhQ" id="7h8-Sg-N0F"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KgV-mC-AAy" id="kMC-JO-pjy"/>
+                            <outlet property="delegate" destination="KgV-mC-AAy" id="NTh-wi-qq1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Teams" id="NbJ-no-fJ8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OZb-cZ-ltz">
+                            <connections>
+                                <segue destination="9AD-yx-9RK" kind="presentation" id="tit-zW-6LW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fgj-s5-dKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1549.5999999999999" y="-211.84407796101951"/>
+            <point key="canvasLocation" x="2488.8000000000002" y="-213.64317841079463"/>
+        </scene>
+        <!--Add Team-->
+        <scene sceneID="wCJ-uC-5jc">
+            <objects>
+                <tableViewController id="Bae-Eb-BET" customClass="AddTeamTableViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="e3h-nz-AOn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Team Name" id="yAG-os-ash">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="bZR-OP-jXC">
+                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZR-OP-jXC" id="4gr-B4-eSO">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-Zh-2YG">
+                                                    <frame key="frameInset" minX="8" minY="6" width="359" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="League Id" id="4gb-O8-XWh">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="UmL-sW-8LG">
+                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UmL-sW-8LG" id="Jf7-Dz-MAj">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LLd-FN-Oc6">
+                                                    <frame key="frameInset" minX="8" minY="8" width="359" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Bae-Eb-BET" id="vcy-Ad-E1e"/>
+                            <outlet property="delegate" destination="Bae-Eb-BET" id="JZG-zO-yMs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Team" id="wV0-sD-T3d">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kdm-sd-zNI">
+                            <connections>
+                                <segue destination="F8g-cl-eF8" kind="unwind" unwindAction="cancelAddTeamWithSegue:" id="GAp-kJ-Luu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="JPD-jf-YM6">
+                            <connections>
+                                <segue destination="F8g-cl-eF8" kind="unwind" unwindAction="addTeamWithSegue:" id="OlA-SL-D3z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leagueIdTextField" destination="LLd-FN-Oc6" id="hZe-gp-HRW"/>
+                        <outlet property="nameTextField" destination="gm5-Zh-2YG" id="LHK-iT-fZq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l3e-pF-oXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="F8g-cl-eF8" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4080.8000000000002" y="-212.74362818590706"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DX4-SA-nhb">
@@ -137,13 +267,69 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="uYr-bF-QaV" kind="relationship" relationship="viewControllers" id="Azd-na-K59"/>
-                        <segue destination="gs4-9p-gOq" kind="relationship" relationship="viewControllers" id="cwV-ot-Ns4"/>
+                        <segue destination="1TL-Fz-uHG" kind="relationship" relationship="viewControllers" id="Azd-na-K59"/>
+                        <segue destination="fyw-g1-aCE" kind="relationship" relationship="viewControllers" id="cwV-ot-Ns4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YQ-9T-Vun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="766" y="123"/>
+        </scene>
+        <!--My Teams-->
+        <scene sceneID="V53-2t-BiI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1TL-Fz-uHG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Teams" image="TeamIcon" id="64b-oL-SBW" userLabel="My Teams"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NBx-nm-qVw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KgV-mC-AAy" kind="relationship" relationship="rootViewController" id="J6y-4k-fdL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="84H-D7-M8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1549.5999999999999" y="-211.84407796101951"/>
+        </scene>
+        <!--My Games-->
+        <scene sceneID="07k-ml-e2k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fyw-g1-aCE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Games" image="GameIcon" id="rJg-iH-lhg" userLabel="My Games"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2v-74-KKg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gs4-9p-gOq" kind="relationship" relationship="rootViewController" id="4iU-bL-Bdv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hCx-qT-XQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1549.5999999999999" y="457.42128935532236"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="f3S-0o-KFI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9AD-yx-9RK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cp9-El-EAm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Bae-Eb-BET" kind="relationship" relationship="rootViewController" id="wj6-ne-cbE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dox-eb-8od" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3261.5999999999999" y="-209.14542728635683"/>
         </scene>
     </scenes>
     <resources>

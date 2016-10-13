@@ -16,10 +16,13 @@
 		3C680DF91DAB625100A9F092 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DF81DAB625100A9F092 /* User.swift */; };
 		3C680DFB1DAB668A00A9F092 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DFA1DAB668A00A9F092 /* UserService.swift */; };
 		3C680DFD1DAB66CB00A9F092 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DFC1DAB66CB00A9F092 /* Settings.swift */; };
-		3C680E011DADFAFF00A9F092 /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E001DADFAFF00A9F092 /* TeamsViewController.swift */; };
 		3C680E031DADFB1800A9F092 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E021DADFB1800A9F092 /* GamesViewController.swift */; };
 		3C680E051DAED7CF00A9F092 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E041DAED7CF00A9F092 /* Team.swift */; };
 		3C680E071DAED7DB00A9F092 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E061DAED7DB00A9F092 /* Game.swift */; };
+		3C680E091DAF56A600A9F092 /* AddTeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E081DAF56A600A9F092 /* AddTeamTableViewController.swift */; };
+		3C680E0B1DAF62E300A9F092 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E0A1DAF62E300A9F092 /* TeamService.swift */; };
+		3C680E0D1DAF69EE00A9F092 /* TeamsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E0C1DAF69EE00A9F092 /* TeamsTableViewController.swift */; };
+		3C680E101DAF710200A9F092 /* TeamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E0F1DAF710200A9F092 /* TeamsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +49,13 @@
 		3C680DF81DAB625100A9F092 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3C680DFA1DAB668A00A9F092 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		3C680DFC1DAB66CB00A9F092 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		3C680E001DADFAFF00A9F092 /* TeamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
 		3C680E021DADFB1800A9F092 /* GamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		3C680E041DAED7CF00A9F092 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		3C680E061DAED7DB00A9F092 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3C680E081DAF56A600A9F092 /* AddTeamTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamTableViewController.swift; sourceTree = "<group>"; };
+		3C680E0A1DAF62E300A9F092 /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
+		3C680E0C1DAF69EE00A9F092 /* TeamsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsTableViewController.swift; sourceTree = "<group>"; };
+		3C680E0F1DAF710200A9F092 /* TeamsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,7 @@
 		3C680DD71DAB5A6300A9F092 /* BaseballSim */ = {
 			isa = PBXGroup;
 			children = (
+				3C680E0E1DAF70E200A9F092 /* cells */,
 				3C680DFF1DACDBB500A9F092 /* model */,
 				3C680DD81DAB5A6300A9F092 /* AppDelegate.swift */,
 				3C680DFE1DACD9AB00A9F092 /* controller */,
@@ -100,6 +107,7 @@
 				3C680DE41DAB5A6300A9F092 /* Info.plist */,
 				3C680DFA1DAB668A00A9F092 /* UserService.swift */,
 				3C680DFC1DAB66CB00A9F092 /* Settings.swift */,
+				3C680E0A1DAF62E300A9F092 /* TeamService.swift */,
 			);
 			path = BaseballSim;
 			sourceTree = "<group>";
@@ -117,8 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				3C680DDA1DAB5A6300A9F092 /* LoginViewController.swift */,
-				3C680E001DADFAFF00A9F092 /* TeamsViewController.swift */,
 				3C680E021DADFB1800A9F092 /* GamesViewController.swift */,
+				3C680E081DAF56A600A9F092 /* AddTeamTableViewController.swift */,
+				3C680E0C1DAF69EE00A9F092 /* TeamsTableViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -131,6 +140,14 @@
 				3C680E061DAED7DB00A9F092 /* Game.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		3C680E0E1DAF70E200A9F092 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				3C680E0F1DAF710200A9F092 /* TeamsTableViewCell.swift */,
+			);
+			name = cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,11 +256,14 @@
 				3C680E031DADFB1800A9F092 /* GamesViewController.swift in Sources */,
 				3C680E071DAED7DB00A9F092 /* Game.swift in Sources */,
 				3C680DFB1DAB668A00A9F092 /* UserService.swift in Sources */,
-				3C680E011DADFAFF00A9F092 /* TeamsViewController.swift in Sources */,
 				3C680DDB1DAB5A6300A9F092 /* LoginViewController.swift in Sources */,
 				3C680E051DAED7CF00A9F092 /* Team.swift in Sources */,
+				3C680E0B1DAF62E300A9F092 /* TeamService.swift in Sources */,
 				3C680DD91DAB5A6300A9F092 /* AppDelegate.swift in Sources */,
 				3C680DF91DAB625100A9F092 /* User.swift in Sources */,
+				3C680E101DAF710200A9F092 /* TeamsTableViewCell.swift in Sources */,
+				3C680E091DAF56A600A9F092 /* AddTeamTableViewController.swift in Sources */,
+				3C680E0D1DAF69EE00A9F092 /* TeamsTableViewController.swift in Sources */,
 				3C680DFD1DAB66CB00A9F092 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
