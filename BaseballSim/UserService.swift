@@ -22,7 +22,7 @@ class UserService
     var dataHeaders:[String:String]!
     var error:String!
     var userInformation:[String:String]!
-    var user:User!
+    var user:User
     
     init()
     {
@@ -38,6 +38,12 @@ class UserService
         self.dataHeaders = ["x-access-token":""]
         self.error = ""
         self.userInformation = [:]
+        self.user = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+    }
+    
+    func getUser() -> User
+    {
+        return self.user
     }
     
     func getRequest(url:String, params: [String:AnyObject], headers: [String:String]?, finished: @escaping () -> Void)
@@ -220,7 +226,7 @@ class UserService
                 let date_created = innerVal.value(forKey: "date_created") as! String
                 let auth_token =  dataHeaders["x-access-token"]!
                 
-                user =  User(id: id, first_name: firstname, last_name: lastname, username: username, email: email, date_created: date_created, auth_token: auth_token)
+                user =  User(id: id, first_name: firstname, last_name: lastname, username: username, email: email, date_created: date_created, auth_token: auth_token, teams:[], games:[])
             }
  
         }
@@ -228,7 +234,7 @@ class UserService
         //Request rest of user's information
         for dataUrl in self.loginUrls
         {
-            if(dataUrl != "users/token" || dataUrl != "users")
+            if(dataUrl != "users/token" && dataUrl != "users")
             {
                 dataRequest.enter()
                 
@@ -259,7 +265,7 @@ class UserService
                     user.setTeams(id: id, league_id: league_id, name: name, date_created: date_created)
                 }
             }
-            
+ 
             if(dataUrl == "games" && (getDictionary["games"]! as AnyObject).count != 0)
             {
                 let gameVal = getDictionary.value(forKey: "games")! as AnyObject

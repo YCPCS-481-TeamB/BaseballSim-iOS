@@ -64,6 +64,7 @@
                         <outlet property="errorLabel" destination="cEb-7p-L53" id="9bL-xI-8AE"/>
                         <outlet property="passwordTextField" destination="PpP-XT-HBa" id="2u0-Mj-dvY"/>
                         <outlet property="usernameTextField" destination="B3O-fJ-I2D" id="oEr-qt-Bfq"/>
+                        <segue destination="mus-kk-9XW" kind="presentation" identifier="mainView" id="rd5-4G-epa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

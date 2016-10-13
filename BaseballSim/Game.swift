@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Game
+class Game: NSObject, NSCoding
 {
     var id:Int
     var league_id:Int
@@ -25,6 +25,30 @@ class Game
         self.team1_id = team1_id
         self.team2_id = team2_id
         self.date_created = date_created
+        
+        super.init()
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder)
+    {
+        let id = aDecoder.decodeInteger(forKey: "id")
+        let league_id = aDecoder.decodeInteger(forKey: "league_id")
+        let field_id = aDecoder.decodeInteger(forKey: "field_id")
+        let team1_id = aDecoder.decodeInteger(forKey: "team1_id")
+        let team2_id = aDecoder.decodeInteger(forKey: "team2_id")
+        let date_created = aDecoder.decodeObject(forKey: "date_created") as! String
+        
+        self.init(id:id, league_id:league_id, field_id:field_id, team1_id:team1_id, team2_id:team2_id, date_created:date_created)
+    }
+    
+    func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(self.id, forKey: "id")
+        aCoder.encode(self.league_id, forKey: "league_id")
+        aCoder.encode(self.field_id, forKey: "field_id")
+        aCoder.encode(self.team1_id, forKey: "team1_id")
+        aCoder.encode(self.team2_id, forKey: "team2_id")
+        aCoder.encode(self.date_created, forKey: "date_created")
     }
     
     func printVals()

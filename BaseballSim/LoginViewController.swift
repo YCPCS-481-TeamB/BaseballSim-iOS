@@ -49,17 +49,22 @@ class LoginViewController: UIViewController
         else
         {
             errorLabel.text = service.login(username: usernameTextField.text!, password: passwordTextField.text!)
-            /*
-            errorLabel.text = service.getPostDictionary().value(forKey: "token") as! String?
-            let p = UserDefaults.standard
-            let key = "user"
-            let value = service.user
-            p.set(value, forKey: key)
-            p.synchronize()
-            */
             
-            //Go to logged in views
             
+            //Go to the logged in views and save user to disk
+            if(errorLabel.text == "")
+            {
+                
+                let defaults = UserDefaults.standard
+                let key = "user"
+                let value = service.getUser()
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: value)
+                
+                defaults.setValue(encodedData, forKey: key)
+                defaults.synchronize()
+ 
+                performSegue(withIdentifier: "mainView", sender: self)
+            }
         }
     }
 

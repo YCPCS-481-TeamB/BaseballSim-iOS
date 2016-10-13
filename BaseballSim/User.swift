@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User
+class User: NSObject , NSCoding
 {
     var id:Int
     var first_name:String
@@ -20,8 +20,8 @@ class User
     var teams:[Team]
     var games:[Game]
     
-    init(id:Int, first_name:String, last_name:String, username:String, email:String, date_created:String, auth_token:String)
-    {
+    init(id:Int, first_name:String, last_name:String, username:String, email:String, date_created:String, auth_token:String, teams:[Team], games:[Game])
+    {        
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -29,8 +29,38 @@ class User
         self.email = email
         self.date_created = date_created
         self.auth_token = auth_token
-        self.teams = []
-        self.games = []
+        self.teams = teams
+        self.games = games
+        
+        super.init()
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder)
+    {        
+        let id = aDecoder.decodeInteger(forKey: "id")
+        let first_name = aDecoder.decodeObject(forKey: "first_name") as! String
+        let last_name = aDecoder.decodeObject(forKey: "last_name") as! String
+        let username = aDecoder.decodeObject(forKey: "username") as! String
+        let email = aDecoder.decodeObject(forKey: "email") as! String
+        let date_created = aDecoder.decodeObject(forKey: "date_created") as! String
+        let auth_token = aDecoder.decodeObject(forKey: "auth_token") as! String
+        let teams = aDecoder.decodeObject(forKey: "teams") as! [Team]
+        let games = aDecoder.decodeObject(forKey: "games") as! [Game]
+        
+        self.init(id:id, first_name:first_name, last_name:last_name, username:username, email:email, date_created:date_created, auth_token:auth_token, teams:teams, games:games)
+    }
+    
+    func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(self.id, forKey: "id")
+        aCoder.encode(self.first_name, forKey: "first_name")
+        aCoder.encode(self.last_name, forKey: "last_name")
+        aCoder.encode(self.username, forKey: "username")
+        aCoder.encode(self.email, forKey: "email")
+        aCoder.encode(self.date_created, forKey: "date_created")
+        aCoder.encode(self.auth_token, forKey: "auth_token")
+        aCoder.encode(self.teams, forKey: "teams")
+        aCoder.encode(self.games, forKey: "games")
     }
     
     func setTeams(id:Int, league_id:Int, name:String, date_created:String)
