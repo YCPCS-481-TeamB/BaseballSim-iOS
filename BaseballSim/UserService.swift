@@ -25,8 +25,8 @@ class UserService
     init()
     {
         self.requests = Request()
-        self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"      //Testing
-        //self.apiUrl = "https://baseballsim.herokuapp.com/api/"            //Heroku
+        //self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"      //Testing
+        self.apiUrl = "https://baseballsim.herokuapp.com/api/"            //Heroku
         self.loginUrls = ["users/token", "users", "teams", "games"]
         self.loginParams = ["username":"koopaluigi", "password":"toadstool"]
         self.loginHeaders = [:]
@@ -166,7 +166,7 @@ class UserService
             }
             
         }
-        user.printVals()
+        //user.printVals()
         return ""
     }
 

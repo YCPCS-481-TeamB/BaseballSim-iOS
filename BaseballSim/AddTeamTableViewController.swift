@@ -16,6 +16,7 @@ class AddTeamTableViewController: UITableViewController {
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
     var teamService = TeamService(auth_token: "")
+    var team:Team = Team(id: -1, league_id: -1, name: "", date_created: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ class AddTeamTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         //Add team to database
-        teamService.addPlayer(name: nameTextField.text!, league_id: leagueIdTextField.text!)
+        team = teamService.addTeam(name: nameTextField.text!, league_id: leagueIdTextField.text!)
     }
  
     

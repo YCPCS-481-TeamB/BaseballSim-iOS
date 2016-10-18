@@ -93,7 +93,7 @@ class Request
         
         for header in headers!
         {
-            request.addValue(header.key, forHTTPHeaderField: header.value)
+            request.addValue(header.value, forHTTPHeaderField: header.key)
         }
         
         let task = URLSession.shared.dataTask(with: request)
@@ -111,7 +111,7 @@ class Request
              //Print out the response from the server for debugging
              let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
              print("responseString = \(responseString)")
-             */
+            */
             
             var post:NSDictionary = [:]
             

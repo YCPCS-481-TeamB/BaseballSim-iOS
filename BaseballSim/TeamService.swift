@@ -30,15 +30,15 @@ class TeamService
         self.error = ""
     }
     
-    func addPlayer(name:String, league_id:String)
+    func addTeam(name:String, league_id:String) -> Team
     {
+        var team = Team(id: -1, league_id: -1, name: "", date_created: "")
+        
         let request = DispatchGroup.init()
         
-        //Gets token of user if user exists
-        
         //let url = apiUrl.api + "/teams/"
-        let url = "https://baseballsim-koopaluigi.c9users.io/api/teams/"
-        print("URL: \(url)")
+        let url = "https://baseballsim.herokuapp.com/api/teams"
+        
         params = ["teamname": name, "league_id" : league_id]
         
         request.enter()
@@ -49,6 +49,16 @@ class TeamService
         })
         
         request.wait()
-        
+        // If teams exist in the returned data from POST
+        if (requests.postDictionary["teams"]! as AnyObject).count != 0
+        {
+            let val = requests.postDictionary.value(forKey: "teams")! as AnyObject
+            let id = val.value(forKey: "id") as! Int
+            let league_id = val.value(forKey: "league_id")! as! Int
+            let name = val.value(forKey: "name") as! String
+            let date_created = val.value(forKey: "date_created") as! String
+            team = Team(id: id, league_id: league_id, name: name, date_created: date_created)
+        }
+        return team
     }
 }

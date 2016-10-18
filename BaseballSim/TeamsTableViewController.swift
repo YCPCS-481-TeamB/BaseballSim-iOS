@@ -29,8 +29,8 @@ class TeamsTableViewController: UITableViewController
             if let value = defaults.object(forKey: key) as? NSData
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
-                print("Loaded in Teams:")
-                print(user.printVals())
+                //print("Loaded in Teams:")
+                //print(user.printVals())
             }
         }
     }
@@ -42,21 +42,23 @@ class TeamsTableViewController: UITableViewController
     
     @IBAction func addTeam(segue:UIStoryboardSegue)
     {
-        print("WAS IN ADD TEAM")
-        /*
-         if let addTeamViewController = segue.source as? AddTeamTableViewController
-         {
-         //Add new team to team array
-         if let team = addTeamViewController.team
-         {
-         user.teams.append(team)
-         
-         //Update View
-         let indexPath = NSIndexPath(forRow: user.teams.count-1, inSection: 0)
-         tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-         }
-         }
-         */
+        
+        if let addTeamViewController = segue.source as? AddTeamTableViewController
+        {
+            //Add new team to team array
+            let team = addTeamViewController.team
+            
+            if team.id != -1
+            {
+                user.teams.append(team)
+                
+                //Update View
+                let indexPath = IndexPath (row: user.teams.count-1, section: 0)
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
