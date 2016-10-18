@@ -17,6 +17,7 @@ class TeamsTableViewController: UITableViewController
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+    var teamService = TeamService(auth_token: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,7 @@ class TeamsTableViewController: UITableViewController
             if let value = defaults.object(forKey: key) as? NSData
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
-                //print("Loaded in Teams:")
-                //print(user.printVals())
+                teamService = TeamService(auth_token: user.auth_token)
             }
         }
     }
@@ -46,17 +46,21 @@ class TeamsTableViewController: UITableViewController
         if let addTeamViewController = segue.source as? AddTeamTableViewController
         {
             //Add new team to team array
-            let team = addTeamViewController.team
-            
-            if team.id != -1
+            let name = addTeamViewController.name
+            let league_id = addTeamViewController.league_id
+            if(name != "" && league_id != "")
             {
-                user.teams.append(team)
-                
-                //Update View
-                let indexPath = IndexPath (row: user.teams.count-1, section: 0)
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
+                let team = teamService.addTeam(name: name, league_id: league_id)
             
+                if team.id != -1
+                {
+                    user.teams.append(team)
+                
+                    //Update View
+                    let indexPath = IndexPath (row: user.teams.count-1, section: 0)
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }
         }
         
     }
