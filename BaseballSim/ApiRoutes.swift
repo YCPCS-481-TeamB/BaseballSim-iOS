@@ -10,35 +10,69 @@ import Foundation
 
 class ApiRoutes
 {
-    var api:String
     var user:Users
     var team:Teams
     
     struct Users
     {
-        let getUsers:String = "/"                      // GET      ()          ()
-        let getUserTeams:String = "/teams"             // GET      (use id)    ()
-        let getUserGames:String = "/games"             // GET      (use id)    ()
-        let createUser:String = "/"                    // POST     ()          (username, password, firstname, lastname, email)
-        let token:String = "/token"                    // POST     ()          (username, password)
-        let validate:String = "/validate"              // POST     ()          (token)
-        let deleteUserById:String = "/"                // DELETE   (use id)    ()
+        //let.api = "https://baseballsim-koopaluigi.c9users.io/api/users"       //Testing
+        let api = "https://baseballsim.herokuapp.com/api/users"                 //Heroku
+        
+        var getUsers:String         // GET      ()          ()
+        var getUserTeams:String     // GET      (use id)    ()
+        var getUserGames:String     // GET      (use id)    ()
+        var createUser:String       // POST     ()          (username, password, firstname, lastname, email)
+        var token:String            // POST     ()          (username, password)
+        var validate:String         // POST     ()          (token)
+        var deleteUserById:String   // DELETE   (use id)    ()
+        
+        init()
+        {
+            getUsers = api + "/"
+            getUserTeams = api + "/teams"
+            getUserGames = api + "/games"
+            createUser = api + "/"
+            token = api + "/token"
+            validate = api + "/validate"
+            deleteUserById = api + "/"
+        }
+        
+        func indexForId() -> String.Index
+        {
+            return api.endIndex
+        }
     }
     
     struct Teams
     {
-        let allPlayers:String = "/"                    // GET      ()          ()
-        let createTeam:String = "/"                    // POST     ()          (Team name, League Id)
-        let updateTeamById:String = "/"                // POST     (use id)    (Team name)
-        let getTeamById:String = "/"                   // GET      (use id)
-        let deleteTeamById:String = "/"                // DELETE   (use id)
-        let getPlayersByTeamId:String = "/players"     // GET
+        //let.api = "https://baseballsim-koopaluigi.c9users.io/api/teams"       //Testing
+        let api = "https://baseballsim.herokuapp.com/api/teams"                 //Heroku
+        
+        var allTeams:String           // GET      ()          ()
+        var createTeam:String           // POST     ()          (Team name, League Id)
+        var updateTeamById:String       // POST     (use id)    (Team name)
+        var getTeamById:String          // GET      (use id)
+        var deleteTeamById:String       // DELETE   (use id)
+        var getPlayersByTeamId:String   // GET      (use id)
+        
+        init()
+        {
+            allTeams = api + "/"
+            createTeam = api + "/"
+            updateTeamById = api + "/"
+            getTeamById = api + "/"
+            deleteTeamById = api + "/"
+            getPlayersByTeamId = api + "/players"
+        }
+        
+        func indexForId() -> String.Index
+        {
+            return api.endIndex
+        }
     }
     
     init()
     {
-        self.api = "https://baseballsim-koopaluigi.c9users.io/api"      //Testing
-        //self.api = "https://baseballsim.herokuapp.com/api"            //Heroku
         self.user = Users()
         self.team = Teams()
     }

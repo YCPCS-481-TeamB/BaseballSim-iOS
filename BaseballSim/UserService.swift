@@ -12,7 +12,7 @@ import UIKit
 class UserService
 {
     var requests:Request
-    var apiUrl:String!
+    var apiRoutes:ApiRoutes
     var loginUrls:[String]!
     var loginParams:[String:String]!
     var loginHeaders:[String:String]!
@@ -25,8 +25,7 @@ class UserService
     init()
     {
         self.requests = Request()
-        //self.apiUrl = "https://baseballsim-koopaluigi.c9users.io/api/"      //Testing
-        self.apiUrl = "https://baseballsim.herokuapp.com/api/"            //Heroku
+        self.apiRoutes = ApiRoutes()
         self.loginUrls = ["users/token", "users", "teams", "games"]
         self.loginParams = ["username":"koopaluigi", "password":"toadstool"]
         self.loginHeaders = [:]
@@ -51,7 +50,7 @@ class UserService
         
         //Gets token of user if user exists
         
-        var url = apiUrl + loginUrls[0]
+        var url = apiRoutes.user.token
         loginParams.updateValue(username, forKey: "username")
         loginParams.updateValue(password, forKey: "password")
         
@@ -74,11 +73,11 @@ class UserService
         dataHeaders["x-access-token"] = requests.postDictionary.value(forKey: "token") as! String?
         
         //Get basic user information
-        url = apiUrl + loginUrls[1]
+        url = apiRoutes.user.getUsers
         
         dataRequest.enter()
         
-        requests.getRequest(url: url, params: dataParams as [String : AnyObject], headers: dataHeaders) {
+        requests.getRequest(url: url, params: dataParams as [String : AnyObject], headers: dataHeaders){
             () in
             dataRequest.leave()
         }
@@ -111,61 +110,83 @@ class UserService
         }
  
         //Request rest of user's information
-        for dataUrl in self.loginUrls
+        
+        //Request teams
+        dataRequest.enter()
+                
+        url = apiRoutes.user.getUserTeams
+        
+        //Add id to url
+        let userId = ("/" + String(user.id)).characters.reversed()
+        
+        for i in userId.indices
         {
-            if(dataUrl != "users/token" && dataUrl != "users")
-            {
-                dataRequest.enter()
-                
-                url = self.apiUrl + "users/\(user.id)/" + dataUrl
-                
-                requests.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
-                    () in
-                    dataRequest.leave()
-                })
-            }
-            
-            dataRequest.wait()
-            
-            if(dataUrl == "teams" && (requests.getDictionary["teams"]! as AnyObject).count != 0)
-            {
-                let teamVal = requests.getDictionary.value(forKey: "teams")! as AnyObject
-                
-                //Find user within user
-                for i in 0...(teamVal.count-1)
-                {
-                    let innerVal = teamVal[i]! as AnyObject
-                    
-                    let id = innerVal.value(forKey: "id") as! Int
-                    let league_id = innerVal.value(forKey: "league_id") as! Int
-                    let name = innerVal.value(forKey: "name") as! String
-                    let date_created = innerVal.value(forKey: "date_created") as! String
-                    
-                    user.setTeams(id: id, league_id: league_id, name: name, date_created: date_created)
-                }
-            }
- 
-            if(dataUrl == "games" && (requests.getDictionary["games"]! as AnyObject).count != 0)
-            {
-                let gameVal = requests.getDictionary.value(forKey: "games")! as AnyObject
-                
-                //Find user within user
-                for i in 0...(gameVal.count-1)
-                {
-                    let innerVal = gameVal[i]! as AnyObject
-                    
-                    let id = innerVal.value(forKey: "id") as! Int
-                    let league_id = innerVal.value(forKey: "league_id") as! Int
-                    let field_id = innerVal.value(forKey: "field_id") as! Int
-                    let team1_id = innerVal.value(forKey: "team1_id") as! Int
-                    let team2_id = innerVal.value(forKey: "team2_id") as! Int
-                    let date_created = innerVal.value(forKey: "date_created") as! String
-                    
-                    user.setGames(id: id, league_id: league_id, field_id: field_id, team1_id: team1_id, team2_id: team2_id, date_created: date_created)
-                }
-            }
-            
+            url.insert(userId[i], at: apiRoutes.user.indexForId())
         }
+        
+        requests.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
+            () in
+            dataRequest.leave()
+        })
+            
+        dataRequest.wait()
+            
+        if((requests.getDictionary["teams"]! as AnyObject).count != 0)
+        {
+            let teamVal = requests.getDictionary.value(forKey: "teams")! as AnyObject
+                
+            //Find user within user
+            for i in 0...(teamVal.count-1)
+            {
+                let innerVal = teamVal[i]! as AnyObject
+                    
+                let id = innerVal.value(forKey: "id") as! Int
+                let league_id = innerVal.value(forKey: "league_id") as! Int
+                let name = innerVal.value(forKey: "name") as! String
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                    
+                user.setTeams(id: id, league_id: league_id, name: name, date_created: date_created)
+            }
+        }
+        
+        //Request games
+        dataRequest.enter()
+        
+        url = apiRoutes.user.getUserGames
+        
+        //Add id to url
+        for i in userId.indices
+        {
+            url.insert(userId[i], at: apiRoutes.user.indexForId())
+        }
+        
+        requests.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
+            () in
+            dataRequest.leave()
+        })
+        
+        dataRequest.wait()
+ 
+        if((requests.getDictionary["games"]! as AnyObject).count != 0)
+        {
+            let gameVal = requests.getDictionary.value(forKey: "games")! as AnyObject
+                
+            //Find user within user
+            for i in 0...(gameVal.count-1)
+            {
+                let innerVal = gameVal[i]! as AnyObject
+                    
+                let id = innerVal.value(forKey: "id") as! Int
+                let league_id = innerVal.value(forKey: "league_id") as! Int
+                let field_id = innerVal.value(forKey: "field_id") as! Int
+                let team1_id = innerVal.value(forKey: "team1_id") as! Int
+                let team2_id = innerVal.value(forKey: "team2_id") as! Int
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                    
+                user.setGames(id: id, league_id: league_id, field_id: field_id, team1_id: team1_id, team2_id: team2_id, date_created: date_created)
+            }
+        }
+        
         //user.printVals()
         return ""
     }
