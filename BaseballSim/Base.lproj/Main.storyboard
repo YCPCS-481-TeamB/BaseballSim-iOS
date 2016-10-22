@@ -84,7 +84,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ub4-cU-lJY" id="iHc-Rj-tSD">
-                                    <frame key="frameInset" width="342" height="75"/>
+                                    <frame key="frameInset" width="342" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TeamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gci-K1-CeR">
@@ -192,7 +192,7 @@
                             <tableViewSection headerTitle="League Id" id="4gb-O8-XWh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="UmL-sW-8LG">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UmL-sW-8LG" id="Jf7-Dz-MAj">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -236,7 +236,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3e-pF-oXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F8g-cl-eF8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4082" y="-209"/>
+            <point key="canvasLocation" x="4081" y="-209"/>
+        </scene>
+        <!--Add Game-->
+        <scene sceneID="eMc-zm-aDI">
+            <objects>
+                <tableViewController id="kn8-91-0cj" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="d1u-R7-qe5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Team 1" id="Pas-uK-LBx">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oid-Fy-EKC">
+                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oid-Fy-EKC" id="92X-y4-yN6">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Team 2" id="bHe-Ph-kFY">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OXk-dm-3pl">
+                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OXk-dm-3pl" id="DYy-Kt-obE">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="kn8-91-0cj" id="chl-23-1ta"/>
+                            <outlet property="delegate" destination="kn8-91-0cj" id="OMK-qm-XzN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Game" id="pIa-yt-lvX">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qk6-IE-0a3"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Cgc-nc-jtF"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7t-9F-TxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4081" y="457"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DX4-SA-nhb">
@@ -307,7 +355,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9E-Z5-UBQ" id="2gk-XJ-dJQ">
-                                    <frame key="frameInset" width="342" height="100"/>
+                                    <frame key="frameInset" width="342" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -317,7 +365,13 @@
                             <outlet property="delegate" destination="SRY-Ds-SNQ" id="owu-fy-cbW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Games" id="bJR-Pt-UKG"/>
+                    <navigationItem key="navigationItem" title="My Games" id="bJR-Pt-UKG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TB1-Rd-EWB">
+                            <connections>
+                                <segue destination="oMc-o2-Ilt" kind="presentation" id="7E6-Zx-jLX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFh-v5-yZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -340,6 +394,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dox-eb-8od" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3261.5999999999999" y="-209.14542728635683"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8Zg-Lc-gSW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oMc-o2-Ilt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YMi-RY-vht">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kn8-91-0cj" kind="relationship" relationship="rootViewController" id="6aV-xs-9i4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="luB-R3-akW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3262" y="457"/>
         </scene>
     </scenes>
     <resources>
