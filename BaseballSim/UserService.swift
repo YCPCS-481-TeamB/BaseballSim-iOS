@@ -45,6 +45,17 @@ class UserService
     //Go through the http requests to get all the information for login
     func login(username:String, password:String) -> String
     {
+        //False login if username or password is empty, return error
+        if username == ""
+        {
+            self.error = "You must enter a username!"
+            return error
+        }
+        if password == ""
+        {
+            self.error = "You must enter a password!"
+            return error
+        }
         let loginRequest = DispatchGroup.init()
         let dataRequest = DispatchGroup.init()
         

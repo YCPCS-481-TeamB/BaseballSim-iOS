@@ -21,6 +21,31 @@ class BaseballSimTests: XCTestCase {
         super.tearDown()
     }
     
+    func testLoginSucceed()
+    {
+        let userService:UserService = UserService()
+        let succeed = userService.login(username: "koopaluigi", password: "toadstool")
+        XCTAssertTrue(succeed == "")
+    }
+    
+    func testLoginFailed()
+    {
+        let userService:UserService = UserService()
+        
+        //Username not entered
+        var failure = userService.login(username: "", password: "")
+        XCTAssertTrue(failure == "You must enter a username!")
+        
+        //Password not entered
+        failure = userService.login(username: "koopaluigi", password: "")
+        XCTAssertTrue(failure == "You must enter a password!")
+        
+        //Incorrect username/password combination
+        failure = userService.login(username: "koopaluigi", password: "notit")
+        XCTAssertTrue(failure == "The Password Is Invalid")
+    }
+    
+    /*
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -32,5 +57,5 @@ class BaseballSimTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+    */
 }
