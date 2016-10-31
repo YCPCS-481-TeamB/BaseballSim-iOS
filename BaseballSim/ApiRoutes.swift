@@ -12,6 +12,7 @@ class ApiRoutes
 {
     var user:Users
     var team:Teams
+    var game:Games
     
     struct Users
     {
@@ -71,9 +72,41 @@ class ApiRoutes
         }
     }
     
+    struct Games
+    {
+        //let.api = "https://baseballsim-koopaluigi.c9users.io/api/games"       //Testing
+        let api = "https://baseballsim.herokuapp.com/api/games"                 //Heroku
+        
+        //var allTeams:String             // GET      ()          ()
+        var createGame:String           // POST     ()          (Team name, League Id)
+        /*
+        var updateTeamById:String       // POST     (use id)    (Team name)
+        var getTeamById:String          // GET      (use id)
+        var deleteTeamById:String       // DELETE   (use id)
+        var getPlayersByTeamId:String   // GET      (use id)
+        */
+        init()
+        {
+            //allTeams = api + "/"
+            createGame = api + "/"
+            /*
+            updateTeamById = api + "/"
+            getTeamById = api + "/"
+            deleteTeamById = api + "/"
+            getPlayersByTeamId = api + "/players"
+             */
+        }
+        
+        func indexForId() -> String.Index
+        {
+            return api.endIndex
+        }
+    }
+    
     init()
     {
         self.user = Users()
         self.team = Teams()
+        self.game = Games()
     }
 }

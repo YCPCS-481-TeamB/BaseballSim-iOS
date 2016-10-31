@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3C3C4A991DAF8639001440C8 /* ApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */; };
 		3C3C4A9B1DB02A7C001440C8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C4A9A1DB02A7C001440C8 /* Request.swift */; };
+		3C5404B41DC6DF6900253A00 /* AddGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */; };
+		3C5404B61DC6ED2300253A00 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B51DC6ED2300253A00 /* GameService.swift */; };
 		3C680DD91DAB5A6300A9F092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DD81DAB5A6300A9F092 /* AppDelegate.swift */; };
 		3C680DDB1DAB5A6300A9F092 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DDA1DAB5A6300A9F092 /* LoginViewController.swift */; };
 		3C680DDE1DAB5A6300A9F092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C680DDC1DAB5A6300A9F092 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutes.swift; sourceTree = "<group>"; };
 		3C3C4A9A1DB02A7C001440C8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameTableViewController.swift; sourceTree = "<group>"; };
+		3C5404B51DC6ED2300253A00 /* GameService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		3C680DD51DAB5A6300A9F092 /* BaseballSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseballSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C680DD81DAB5A6300A9F092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C680DDA1DAB5A6300A9F092 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				3C680DE41DAB5A6300A9F092 /* Info.plist */,
 				3C680DFA1DAB668A00A9F092 /* UserService.swift */,
 				3C680E0A1DAF62E300A9F092 /* TeamService.swift */,
+				3C5404B51DC6ED2300253A00 /* GameService.swift */,
 				3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */,
 				3C3C4A9A1DB02A7C001440C8 /* Request.swift */,
 			);
@@ -133,6 +138,7 @@
 				3C680E081DAF56A600A9F092 /* AddTeamTableViewController.swift */,
 				3C680E0C1DAF69EE00A9F092 /* TeamsTableViewController.swift */,
 				3C680E111DAF77E700A9F092 /* GamesTableViewController.swift */,
+				3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -259,12 +265,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C5404B41DC6DF6900253A00 /* AddGameTableViewController.swift in Sources */,
 				3C680E071DAED7DB00A9F092 /* Game.swift in Sources */,
 				3C680DFB1DAB668A00A9F092 /* UserService.swift in Sources */,
 				3C680DDB1DAB5A6300A9F092 /* LoginViewController.swift in Sources */,
 				3C3C4A991DAF8639001440C8 /* ApiRoutes.swift in Sources */,
 				3C680E051DAED7CF00A9F092 /* Team.swift in Sources */,
 				3C680E0B1DAF62E300A9F092 /* TeamService.swift in Sources */,
+				3C5404B61DC6ED2300253A00 /* GameService.swift in Sources */,
 				3C680E141DAF780D00A9F092 /* GamesTableViewCell.swift in Sources */,
 				3C680DD91DAB5A6300A9F092 /* AppDelegate.swift in Sources */,
 				3C680DF91DAB625100A9F092 /* User.swift in Sources */,

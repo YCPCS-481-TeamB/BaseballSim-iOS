@@ -18,7 +18,7 @@ class GamesTableViewController: UITableViewController
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
-    var teamService = TeamService(auth_token: "")
+    var gameService = GameService(auth_token: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class GamesTableViewController: UITableViewController
             if let value = defaults.object(forKey: key) as? NSData
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
-                teamService = TeamService(auth_token: user.auth_token)
+                gameService = GameService(auth_token: user.auth_token)
             }
         }
     }
@@ -44,7 +44,25 @@ class GamesTableViewController: UITableViewController
     @IBAction func addGame(segue:UIStoryboardSegue)
     {
         
-        
+        if let addGameViewController = segue.source as? AddGameTableViewController
+        {
+            //Add new team to team array
+            let team1_id = addGameViewController.team1_id
+            let team2_id = addGameViewController.team2_id
+            if(team1_id != "" && team2_id != "")
+            {
+                let game = gameService.addGame(team1_id: team1_id, team2_id: team2_id)
+                
+                if game.id != -1
+                {
+                    user.games.append(game)
+                    
+                    //Update View
+                    let indexPath = IndexPath (row: user.games.count-1, section: 0)
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
         
     }
 
