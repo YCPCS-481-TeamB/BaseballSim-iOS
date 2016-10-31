@@ -8,16 +8,44 @@
 
 import UIKit
 
-class GamesTableViewController: UITableViewController {
-
+class GamesTableViewController: UITableViewController
+{
+    // MARK: Properties
+    @IBOutlet weak var team1IdLabel: UILabel!
+    @IBOutlet weak var team2IdLabel: UILabel!
+    @IBOutlet weak var fieldIdLabel: UILabel!
+    @IBOutlet weak var leagueIdLabel: UILabel!
+    
+    
+    var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+    var teamService = TeamService(auth_token: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //Get user info
+        let defaults = UserDefaults.standard
+        let key = "user"
+        if defaults.object(forKey: key) != nil
+        {
+            if let value = defaults.object(forKey: key) as? NSData
+            {
+                user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
+                teamService = TeamService(auth_token: user.auth_token)
+            }
+        }
+    }
+    
+    @IBAction func cancelAddGame(segue:UIStoryboardSegue)
+    {
+        
+    }
+    
+    @IBAction func addGame(segue:UIStoryboardSegue)
+    {
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,25 +55,31 @@ class GamesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return user.games.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GamesTableViewCell
+        
+        let game = user.games[indexPath.row] as Game
+        cell.team1IdLabel.text = String(game.team1_id)
+        cell.team2IdLabel.text = String(game.team2_id)
+        cell.fieldIdLabel.text = String(game.field_id)
+        cell.leagueIdLabel.text = String(game.league_id)
+        
+        cell.layer.borderWidth = 0.6;
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

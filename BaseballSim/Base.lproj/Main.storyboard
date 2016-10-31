@@ -278,11 +278,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Game" id="pIa-yt-lvX">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qk6-IE-0a3"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Cgc-nc-jtF"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qk6-IE-0a3">
+                            <connections>
+                                <segue destination="zlQ-PY-ddW" kind="unwind" unwindAction="cancelAddGameWithSegue:" id="zlh-YK-qxH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Cgc-nc-jtF">
+                            <connections>
+                                <segue destination="zlQ-PY-ddW" kind="unwind" unwindAction="addGameWithSegue:" id="YHa-ld-BgT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7t-9F-TxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zlQ-PY-ddW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4081" y="457"/>
         </scene>
@@ -420,6 +429,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fieldIdLabel" destination="igZ-W9-8ms" id="9k3-Q8-ysk"/>
+                                    <outlet property="leagueIdLabel" destination="IOB-0j-lVa" id="vBZ-BL-Q68"/>
+                                    <outlet property="team1IdLabel" destination="etV-1n-TCl" id="rrv-us-RHp"/>
+                                    <outlet property="team2IdLabel" destination="p98-00-BDq" id="wWf-1Y-O1k"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
