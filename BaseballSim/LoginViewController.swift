@@ -39,6 +39,11 @@ class LoginViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue)
+    {
+        
+    }
 
     @IBAction func loginButton(_ sender: UIButton)
     {
@@ -59,11 +64,15 @@ class LoginViewController: UIViewController
                 let key = "user"
                 let value = service.getUser()
                 let encodedData = NSKeyedArchiver.archivedData(withRootObject: value)
-                
+                                
                 defaults.setValue(encodedData, forKey: key)
                 defaults.synchronize()
  
                 performSegue(withIdentifier: "mainView", sender: self)
+                
+                usernameTextField.text = ""
+                passwordTextField.text = ""
+                errorLabel.text = ""
             }
         }
     }

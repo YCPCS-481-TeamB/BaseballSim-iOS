@@ -329,6 +329,7 @@
                     <connections>
                         <segue destination="1TL-Fz-uHG" kind="relationship" relationship="viewControllers" id="Azd-na-K59"/>
                         <segue destination="fyw-g1-aCE" kind="relationship" relationship="viewControllers" id="cwV-ot-Ns4"/>
+                        <segue destination="DQW-gP-HGg" kind="relationship" relationship="viewControllers" id="T1r-D7-CGl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YQ-9T-Vun" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -511,6 +512,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luB-R3-akW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3262" y="457"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BKP-tE-Uzy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DQW-gP-HGg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="more" id="WeI-Bm-icb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FOh-bt-Tfd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FcS-La-bTM" kind="relationship" relationship="rootViewController" id="tBx-CP-uS2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QdV-c3-sUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1549.5999999999999" y="1118.5907046476761"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="KUZ-Q3-q5f">
+            <objects>
+                <viewController id="FcS-La-bTM" customClass="SettingsViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="atx-Oo-tFm"/>
+                        <viewControllerLayoutGuide type="bottom" id="yxg-Gb-i3a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VRx-ez-rGW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEW-k5-G94">
+                                <frame key="frameInset" minX="137" minY="318" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOutButton:" destination="FcS-La-bTM" eventType="touchUpInside" id="aZj-Ed-e1b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="e3Q-IS-bFY"/>
+                    <connections>
+                        <segue destination="aAZ-Ie-6yF" kind="unwind" identifier="logOut" unwindAction="prepareForUnwindWithSegue:" id="gKp-3w-O1z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N53-Js-Qsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aAZ-Ie-6yF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2488.8000000000002" y="1118.5907046476761"/>
         </scene>
     </scenes>
     <resources>
