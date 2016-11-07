@@ -1,25 +1,19 @@
 //
-//  TeamsTableViewController.swift
+//  InboxTableViewController.swift
 //  BaseballSim
 //
-//  Created by Cooper Luetje on 10/13/16.
+//  Created by Cooper Luetje on 11/7/16.
 //  Copyright © 2016 TeamB. All rights reserved.
 //
 
 import UIKit
 
-class TeamsTableViewController: UITableViewController
+class InboxTableViewController: UITableViewController
 {
-    // MARK: Properties
-    @IBOutlet weak var teamNameLabel: UILabel!
-    @IBOutlet weak var idLabel: UILabel!
-    @IBOutlet weak var leagueIdLabel: UILabel!
-    
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
-    var teamService = TeamService(auth_token: "")
     var approvalService = ApprovalService(auth_token: "")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,47 +25,11 @@ class TeamsTableViewController: UITableViewController
             if let value = defaults.object(forKey: key) as? NSData
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
-                teamService = TeamService(auth_token: user.auth_token)
                 approvalService = ApprovalService(auth_token: user.auth_token)
             }
         }
         
         user.approvals = approvalService.getApprovals()
-        
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
-        
-        defaults.setValue(encodedData, forKey: "user")
-        defaults.synchronize()
-    }
-    
-    @IBAction func cancelAddTeam(segue:UIStoryboardSegue)
-    {
-        
-    }
-    
-    @IBAction func addTeam(segue:UIStoryboardSegue)
-    {
-        
-        if let addTeamViewController = segue.source as? AddTeamTableViewController
-        {
-            //Add new team to team array
-            let name = addTeamViewController.name
-            let league_id = addTeamViewController.league_id
-            if(name != "" && league_id != "")
-            {
-                let team = teamService.addTeam(name: name, league_id: league_id)
-            
-                if team.id != -1
-                {
-                    user.teams.append(team)
-                
-                    //Update View
-                    let indexPath = IndexPath (row: user.teams.count-1, section: 0)
-                    tableView.insertRows(at: [indexPath], with: .automatic)
-                }
-            }
-        }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,24 +46,19 @@ class TeamsTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return user.teams.count
+        return user.approvals.count
     }
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
-     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamsTableViewCell
-
-        let team = user.teams[indexPath.row] as Team
-        cell.teamNameLabel.text = team.name
-        cell.idLabel.text = String(team.id)
-        cell.leagueIdLabel.text = String(team.league_id)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InboxCell", for: indexPath) as! InboxTableViewCell
+                
+        let approval = user.approvals[indexPath.row] as Approval
+        cell.idLabel.text = String(approval.id)
         
         cell.layer.borderWidth = 0.6;
-
+        
         return cell
     }
-    
 
     /*
     // Override to support conditional editing of the table view.

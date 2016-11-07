@@ -17,7 +17,7 @@ class GamesTableViewController: UITableViewController
     @IBOutlet weak var leagueIdLabel: UILabel!
     
     
-    var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+    var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var gameService = GameService(auth_token: "")
     
     override func viewDidLoad() {

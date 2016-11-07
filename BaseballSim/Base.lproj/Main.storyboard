@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41" y="123"/>
+            <point key="canvasLocation" x="-674" y="1128"/>
         </scene>
         <!--My Teams-->
         <scene sceneID="btp-oS-P0D">
@@ -84,7 +84,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ub4-cU-lJY" id="iHc-Rj-tSD">
-                                    <frame key="frameInset" width="342" height="74"/>
+                                    <frame key="frameInset" width="342" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TeamLargeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gci-K1-CeR">
@@ -178,7 +178,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gm5-Zh-2YG">
-                                                    <frame key="frameInset" minX="7" minY="6" height="30" maxX="-8"/>
+                                                    <frame key="frameInset" minX="5" minY="6" height="30" maxX="-6"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -192,7 +192,7 @@
                             <tableViewSection headerTitle="League Id" id="4gb-O8-XWh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="UmL-sW-8LG">
-                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UmL-sW-8LG" id="Jf7-Dz-MAj">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -271,7 +271,7 @@
                             <tableViewSection headerTitle="Team 2" id="bHe-Ph-kFY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OXk-dm-3pl">
-                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OXk-dm-3pl" id="DYy-Kt-obE">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -329,13 +329,14 @@
                     <connections>
                         <segue destination="1TL-Fz-uHG" kind="relationship" relationship="viewControllers" id="Azd-na-K59"/>
                         <segue destination="fyw-g1-aCE" kind="relationship" relationship="viewControllers" id="cwV-ot-Ns4"/>
+                        <segue destination="H0h-lm-1ir" kind="relationship" relationship="viewControllers" id="kXh-q1-Aab"/>
                         <segue destination="6Ri-lx-EIu" kind="relationship" relationship="viewControllers" id="SdU-xk-8eK"/>
                         <segue destination="DQW-gP-HGg" kind="relationship" relationship="viewControllers" id="T1r-D7-CGl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YQ-9T-Vun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="123"/>
+            <point key="canvasLocation" x="60" y="1128"/>
         </scene>
         <!--My Teams-->
         <scene sceneID="V53-2t-BiI">
@@ -388,7 +389,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9E-Z5-UBQ" id="2gk-XJ-dJQ">
-                                    <frame key="frameInset" width="342" height="74"/>
+                                    <frame key="frameInset" width="342" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GameLargeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UOL-LM-APw">
@@ -514,20 +515,39 @@
             </objects>
             <point key="canvasLocation" x="3262" y="457"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Current Game-->
+        <scene sceneID="PZH-tY-gFx">
+            <objects>
+                <viewController id="EHj-cd-d8A" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h1w-BC-Z45"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q7X-dc-qQt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lel-62-N1H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Current Game" id="l8S-Dm-iog"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BzT-oN-8r2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488.8000000000002" y="1127.5862068965519"/>
+        </scene>
+        <!--Inbox-->
         <scene sceneID="BTg-le-nUr">
             <objects>
-                <tableViewController id="Gj0-Ex-AH2" sceneMemberID="viewController">
+                <tableViewController id="Gj0-Ex-AH2" customClass="InboxTableViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" id="K2a-nM-jQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="WFQ-eP-vqT" customClass="InboxTableViewCell" customModule="BaseballSim" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InboxCell" id="WFQ-eP-vqT" customClass="InboxTableViewCell" customModule="BaseballSim" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WFQ-eP-vqT" id="5i0-5a-Jqe">
-                                    <frame key="frameInset" width="342" height="114"/>
+                                    <frame key="frameInset" width="375" height="114"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Team:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3c-cg-Wi2">
@@ -545,7 +565,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHn-4T-260">
-                                            <frame key="frameInset" minX="235" minY="76" width="99" height="30"/>
+                                            <frame key="frameInset" minX="268" minY="76" width="99" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Reject"/>
                                         </button>
@@ -553,6 +573,9 @@
                                             <frame key="frameInset" minX="8" minY="76" width="99" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Accept"/>
+                                            <connections>
+                                                <action selector="acceptButton:" destination="WFQ-eP-vqT" eventType="touchUpInside" id="ZNI-o3-U7R"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Opponents Team:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCH-xe-CP0">
                                             <frame key="frameInset" minX="8" minY="37" width="142" height="21"/>
@@ -568,8 +591,25 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT2-Mp-1yd">
+                                            <frame key="frameInset" minX="317" minY="8" width="50" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCl-lU-aPJ">
+                                            <frame key="frameInset" minX="292" minY="8" width="27" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="idLabel" destination="nT2-Mp-1yd" id="yGE-zJ-CT5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -577,11 +617,11 @@
                             <outlet property="delegate" destination="Gj0-Ex-AH2" id="tP6-fr-w85"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jKH-EI-MYF"/>
+                    <navigationItem key="navigationItem" title="Inbox" id="jKH-EI-MYF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tAl-xG-Bvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2488.8000000000002" y="1150.9745127436283"/>
+            <point key="canvasLocation" x="2488.8000000000002" y="1800.4497751124438"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BKP-tE-Uzy">
@@ -600,7 +640,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QdV-c3-sUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1550" y="1855"/>
+            <point key="canvasLocation" x="1550" y="2481"/>
         </scene>
         <!--Settings-->
         <scene sceneID="KUZ-Q3-q5f">
@@ -633,7 +673,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N53-Js-Qsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="aAZ-Ie-6yF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2489" y="1854"/>
+            <point key="canvasLocation" x="2489" y="2481"/>
         </scene>
         <!--Inbox-->
         <scene sceneID="pcj-ot-uh2">
@@ -652,7 +692,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mbn-cm-EcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1549.5999999999999" y="1150.9745127436283"/>
+            <point key="canvasLocation" x="1550" y="1802"/>
+        </scene>
+        <!--Play-->
+        <scene sceneID="Y4d-pD-pWa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H0h-lm-1ir" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Play" image="GameIcon" id="JFM-LO-kVa"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fOy-Ob-wgq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EHj-cd-d8A" kind="relationship" relationship="rootViewController" id="mXy-W6-bGc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zBR-At-bvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1549.5999999999999" y="1127.5862068965519"/>
         </scene>
     </scenes>
     <resources>

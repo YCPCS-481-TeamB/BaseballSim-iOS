@@ -14,7 +14,7 @@ class AddTeamTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var leagueIdTextField: UITextField!
     
-    var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+    var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var teamService = TeamService(auth_token: "")
     var team:Team = Team(id: -1, league_id: -1, name: "", date_created: "")
     var name:String = ""

@@ -33,7 +33,7 @@ class UserService
         self.dataHeaders = ["x-access-token":""]
         self.error = ""
         self.userInformation = [:]
-        self.user = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
+        self.user = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     }
     
     func getUser() -> User
@@ -115,7 +115,7 @@ class UserService
                 let date_created = innerVal.value(forKey: "date_created") as! String
                 let auth_token =  dataHeaders["x-access-token"]!
                 
-                user =  User(id: id, first_name: firstname, last_name: lastname, username: username, email: email, date_created: date_created, auth_token: auth_token, teams:[], games:[])
+                user =  User(id: id, first_name: firstname, last_name: lastname, username: username, email: email, date_created: date_created, auth_token: auth_token, teams:[], games:[], approvals: [])
             }
  
         }

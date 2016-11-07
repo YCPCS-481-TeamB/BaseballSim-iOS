@@ -8,8 +8,11 @@
 
 import UIKit
 
-class InboxTableViewCell: UITableViewCell {
-
+class InboxTableViewCell: UITableViewCell
+{
+    // MARK: Properties
+    @IBOutlet weak var idLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +23,6 @@ class InboxTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }

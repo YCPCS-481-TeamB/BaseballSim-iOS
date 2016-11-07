@@ -27,7 +27,7 @@ class ApprovalService
         self.error = ""
     }
     
-    func getApprovals()
+    func getApprovals() -> [Approval]
     {
         let request = DispatchGroup.init()
         
@@ -41,21 +41,27 @@ class ApprovalService
         })
         
         request.wait()
-        // If approvals exist in the returned data from POST
-        /*
-        if (requests.postDictionary["approvals"]! as AnyObject).count != 0
+        
+        var approvals:[Approval] = []
+        
+        // If approvals exist in the returned data from GET
+        if (requests.getDictionary["approvals"]! as AnyObject).count != 0
         {
-            let val = requests.postDictionary.value(forKey: "approvals")! as AnyObject
-            print(val)
-            /*
-            let id = val.value(forKey: "id") as! Int
-            let league_id = val.value(forKey: "league_id")! as! Int
-            let field_id = val.value(forKey: "field_id")! as! Int
-            let team1_id = val.value(forKey: "team1_id")! as! Int
-            let team2_id = val.value(forKey: "team2_id")! as! Int
-            let date_created = val.value(forKey: "date_created") as! String
-            */
+            let val = requests.getDictionary.value(forKey: "approvals")! as AnyObject
+            for i in 0...(val.count-1)
+            {
+                let innerVal = val[i]! as AnyObject
+                let id = innerVal.value(forKey: "id") as! Int
+                let approved = innerVal.value(forKey: "approved")! as! String
+                let item_id = innerVal.value(forKey: "item_id")! as! Int
+                let item_type = innerVal.value(forKey: "item_type")! as! String
+                let date_created = innerVal.value(forKey: "date_created")! as! String
+                
+                let approval = Approval(id: id, approved: approved, item_id: item_id, item_type: item_type, date_created: date_created)
+                approvals.append(approval)
+            }
         }
-        */
+        
+        return approvals
     }
 }
