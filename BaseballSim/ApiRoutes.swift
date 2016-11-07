@@ -13,11 +13,12 @@ class ApiRoutes
     var user:Users
     var team:Teams
     var game:Games
+    var approvals:Approvals
     
     struct Users
     {
-        //let.api = "https://baseballsim-koopaluigi.c9users.io/api/users"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/users"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/users"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/users"                 //Heroku
         
         var getUsers:String         // GET      ()          ()
         var getUserTeams:String     // GET      (use id)    ()
@@ -46,8 +47,8 @@ class ApiRoutes
     
     struct Teams
     {
-        //let.api = "https://baseballsim-koopaluigi.c9users.io/api/teams"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/teams"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/teams"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/teams"                 //Heroku
         
         var allTeams:String           // GET      ()          ()
         var createTeam:String           // POST     ()          (Team name, League Id)
@@ -74,8 +75,8 @@ class ApiRoutes
     
     struct Games
     {
-        //let.api = "https://baseballsim-koopaluigi.c9users.io/api/games"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/games"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/games"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/games"                 //Heroku
         
         //var allTeams:String             // GET      ()          ()
         var createGame:String           // POST     ()          (Team name, League Id)
@@ -103,10 +104,42 @@ class ApiRoutes
         }
     }
     
+    struct Approvals
+    {
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/approval"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/approval"                 //Heroku
+        
+        //var allTeams:String             // GET      ()          ()
+        var getApprovals:String           // GET      ()          ()
+        /*
+         var updateTeamById:String       // POST     (use id)    (Team name)
+         var getTeamById:String          // GET      (use id)
+         var deleteTeamById:String       // DELETE   (use id)
+         var getPlayersByTeamId:String   // GET      (use id)
+         */
+        init()
+        {
+            //allTeams = api + "/"
+            getApprovals = api + "/user/pending"
+            /*
+             updateTeamById = api + "/"
+             getTeamById = api + "/"
+             deleteTeamById = api + "/"
+             getPlayersByTeamId = api + "/players"
+             */
+        }
+        
+        func indexForId() -> String.Index
+        {
+            return api.endIndex
+        }
+    }
+    
     init()
     {
         self.user = Users()
         self.team = Teams()
         self.game = Games()
+        self.approvals = Approvals()
     }
 }

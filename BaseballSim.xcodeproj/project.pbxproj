@@ -12,6 +12,8 @@
 		3C5404B41DC6DF6900253A00 /* AddGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */; };
 		3C5404B61DC6ED2300253A00 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B51DC6ED2300253A00 /* GameService.swift */; };
 		3C5404B81DC8493E00253A00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B71DC8493E00253A00 /* SettingsViewController.swift */; };
+		3C5404BA1DCA5B8800253A00 /* InboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B91DCA5B8800253A00 /* InboxTableViewCell.swift */; };
+		3C5404BC1DD0578800253A00 /* ApprovalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404BB1DD0578700253A00 /* ApprovalService.swift */; };
 		3C680DD91DAB5A6300A9F092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DD81DAB5A6300A9F092 /* AppDelegate.swift */; };
 		3C680DDB1DAB5A6300A9F092 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680DDA1DAB5A6300A9F092 /* LoginViewController.swift */; };
 		3C680DDE1DAB5A6300A9F092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C680DDC1DAB5A6300A9F092 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameTableViewController.swift; sourceTree = "<group>"; };
 		3C5404B51DC6ED2300253A00 /* GameService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		3C5404B71DC8493E00253A00 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3C5404B91DCA5B8800253A00 /* InboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
+		3C5404BB1DD0578700253A00 /* ApprovalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalService.swift; sourceTree = "<group>"; };
 		3C680DD51DAB5A6300A9F092 /* BaseballSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseballSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C680DD81DAB5A6300A9F092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C680DDA1DAB5A6300A9F092 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				3C680DFA1DAB668A00A9F092 /* UserService.swift */,
 				3C680E0A1DAF62E300A9F092 /* TeamService.swift */,
 				3C5404B51DC6ED2300253A00 /* GameService.swift */,
+				3C5404BB1DD0578700253A00 /* ApprovalService.swift */,
 				3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */,
 				3C3C4A9A1DB02A7C001440C8 /* Request.swift */,
 			);
@@ -161,6 +166,7 @@
 			children = (
 				3C680E0F1DAF710200A9F092 /* TeamsTableViewCell.swift */,
 				3C680E131DAF780D00A9F092 /* GamesTableViewCell.swift */,
+				3C5404B91DCA5B8800253A00 /* InboxTableViewCell.swift */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -272,6 +278,7 @@
 				3C680E071DAED7DB00A9F092 /* Game.swift in Sources */,
 				3C680DFB1DAB668A00A9F092 /* UserService.swift in Sources */,
 				3C680DDB1DAB5A6300A9F092 /* LoginViewController.swift in Sources */,
+				3C5404BC1DD0578800253A00 /* ApprovalService.swift in Sources */,
 				3C3C4A991DAF8639001440C8 /* ApiRoutes.swift in Sources */,
 				3C680E051DAED7CF00A9F092 /* Team.swift in Sources */,
 				3C680E0B1DAF62E300A9F092 /* TeamService.swift in Sources */,
@@ -282,6 +289,7 @@
 				3C680E101DAF710200A9F092 /* TeamsTableViewCell.swift in Sources */,
 				3C5404B81DC8493E00253A00 /* SettingsViewController.swift in Sources */,
 				3C680E091DAF56A600A9F092 /* AddTeamTableViewController.swift in Sources */,
+				3C5404BA1DCA5B8800253A00 /* InboxTableViewCell.swift in Sources */,
 				3C3C4A9B1DB02A7C001440C8 /* Request.swift in Sources */,
 				3C680E121DAF77E700A9F092 /* GamesTableViewController.swift in Sources */,
 				3C680E0D1DAF69EE00A9F092 /* TeamsTableViewController.swift in Sources */,

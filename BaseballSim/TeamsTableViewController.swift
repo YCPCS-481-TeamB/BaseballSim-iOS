@@ -18,6 +18,7 @@ class TeamsTableViewController: UITableViewController
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [])
     var teamService = TeamService(auth_token: "")
+    var approvalService = ApprovalService(auth_token: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +32,11 @@ class TeamsTableViewController: UITableViewController
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
                 teamService = TeamService(auth_token: user.auth_token)
+                approvalService = ApprovalService(auth_token: user.auth_token)
             }
         }
+        
+        approvalService.getApprovals()
     }
     
     @IBAction func cancelAddTeam(segue:UIStoryboardSegue)
