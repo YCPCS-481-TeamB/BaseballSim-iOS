@@ -64,4 +64,50 @@ class ApprovalService
         
         return approvals
     }
+    
+    func approve(id:String)
+    {
+        let request = DispatchGroup.init()
+        
+        var url = apiRoutes.approvals.approveApprovals
+        
+        //Add id to url
+        let itemId = ("/" + String(id)).characters.reversed()
+        
+        for i in itemId.indices
+        {
+            url.insert(itemId[i], at: apiRoutes.approvals.indexForId())
+        }
+        
+        params = ["status":"approved", "item_id":id]
+        
+        request.enter()
+        
+        requests.postRequest(url: url, params: (params as [String : AnyObject]?)!, headers: headers, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        var approvals:[Approval] = []
+        
+        // If approvals exist in the returned data from POST
+        if (requests.postDictionary["approvals"]! as AnyObject).count != 0
+        {
+            let val = requests.postDictionary.value(forKey: "approvals")! as AnyObject
+            for i in 0...(val.count-1)
+            {
+                let innerVal = val[i]! as AnyObject
+                //let id = innerVal.value(forKey: "id") as! Int
+                //let approved = innerVal.value(forKey: "approved")! as! String
+                //let item_id = innerVal.value(forKey: "item_id")! as! Int
+                //let item_type = innerVal.value(forKey: "item_type")! as! String
+                //let date_created = innerVal.value(forKey: "date_created")! as! String
+                
+                //let approval = Approval(id: id, approved: approved, item_id: item_id, item_type: item_type, date_created: date_created)
+                //approvals.append(approval)
+            }
+        }
+    }
 }

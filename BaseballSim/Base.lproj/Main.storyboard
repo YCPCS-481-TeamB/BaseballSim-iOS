@@ -573,9 +573,6 @@
                                             <frame key="frameInset" minX="8" minY="76" width="99" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Accept"/>
-                                            <connections>
-                                                <action selector="acceptButton:" destination="WFQ-eP-vqT" eventType="touchUpInside" id="ZNI-o3-U7R"/>
-                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Opponents Team:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCH-xe-CP0">
                                             <frame key="frameInset" minX="8" minY="37" width="142" height="21"/>
@@ -608,6 +605,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="acceptButton" destination="rgx-7h-mVf" id="hcd-ci-AYX"/>
                                     <outlet property="idLabel" destination="nT2-Mp-1yd" id="yGE-zJ-CT5"/>
                                 </connections>
                             </tableViewCell>

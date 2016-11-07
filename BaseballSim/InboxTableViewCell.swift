@@ -12,6 +12,7 @@ class InboxTableViewCell: UITableViewCell
 {
     // MARK: Properties
     @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var acceptButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,5 @@ class InboxTableViewCell: UITableViewCell
 
         // Configure the view for the selected state
     }
-    
 
 }

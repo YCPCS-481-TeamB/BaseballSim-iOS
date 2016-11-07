@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController
     {
         let logOutAlert = UIAlertController(title: "Log out", message: "Are you sure you would like to log out?", preferredStyle: UIAlertControllerStyle.alert)
         
-        logOutAlert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action: UIAlertAction!) in
+        logOutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             //Delete the User data
             let defaults = UserDefaults.standard
             let key = "user"

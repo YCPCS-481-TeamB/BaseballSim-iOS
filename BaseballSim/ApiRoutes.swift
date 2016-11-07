@@ -111,6 +111,7 @@ class ApiRoutes
         
         //var allTeams:String             // GET      ()          ()
         var getApprovals:String           // GET      ()          ()
+        var approveApprovals:String
         /*
          var updateTeamById:String       // POST     (use id)    (Team name)
          var getTeamById:String          // GET      (use id)
@@ -121,6 +122,7 @@ class ApiRoutes
         {
             //allTeams = api + "/"
             getApprovals = api + "/user/pending"
+            approveApprovals = api + "/status"
             /*
              updateTeamById = api + "/"
              getTeamById = api + "/"

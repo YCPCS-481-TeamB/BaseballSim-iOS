@@ -13,6 +13,7 @@ class InboxTableViewController: UITableViewController
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var approvalService = ApprovalService(auth_token: "")
+    var currentIndexPath:IndexPath = IndexPath()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +56,21 @@ class InboxTableViewController: UITableViewController
         let approval = user.approvals[indexPath.row] as Approval
         cell.idLabel.text = String(approval.id)
         
+        currentIndexPath = indexPath
+        
+        cell.acceptButton.tag = indexPath.row
+        cell.acceptButton.addTarget(self, action: #selector(InboxTableViewController.accept(_:)), for: .touchUpInside)
         cell.layer.borderWidth = 0.6;
         
         return cell
+    }
+    
+    func accept(_ sender: UIButton!)
+    {
+        let approval_id = user.approvals[sender.tag].id
+        approvalService.approve(id: String(approval_id))
+        user.approvals.remove(at: sender.tag)
+        tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: UITableViewRowAnimation.automatic)
     }
 
     /*
