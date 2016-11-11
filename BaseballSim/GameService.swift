@@ -201,4 +201,94 @@ class GameService
         return gameAction
         
     }
+    
+    func isGameApproved(game_id:Int) ->Bool
+    {
+        
+        let request = DispatchGroup.init()
+        
+        var url = apiRoutes.game.getGameApproval
+        
+        //Add id to url
+        let gameId = ("/" + String(game_id)).characters.reversed()
+        
+        for i in gameId.indices
+        {
+            url.insert(gameId[i], at: apiRoutes.game.indexForId())
+        }
+        
+        //params = []
+        
+        request.enter()
+        
+        requests.getRequest(url: url, params: (params as [String : AnyObject]?)!, headers: headers, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        // If games exist in the returned data from GET
+        if (requests.getDictionary["approvals"]! as AnyObject).count != 0
+        {
+            let val = requests.getDictionary.value(forKey: "approvals")! as AnyObject
+            for i in 0...(val.count-1)
+            {
+                let innerVal = val[i]! as AnyObject
+                
+                let approved = innerVal.value(forKey: "approved") as! String
+                if(approved == "approved")
+                {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    func isGameDeclined(game_id:Int) ->Bool
+    {
+        
+        let request = DispatchGroup.init()
+        
+        var url = apiRoutes.game.getGameApproval
+        
+        //Add id to url
+        let gameId = ("/" + String(game_id)).characters.reversed()
+        
+        for i in gameId.indices
+        {
+            url.insert(gameId[i], at: apiRoutes.game.indexForId())
+        }
+        
+        //params = []
+        
+        request.enter()
+        
+        requests.getRequest(url: url, params: (params as [String : AnyObject]?)!, headers: headers, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        // If games exist in the returned data from GET
+        if (requests.getDictionary["approvals"]! as AnyObject).count != 0
+        {
+            let val = requests.getDictionary.value(forKey: "approvals")! as AnyObject
+            for i in 0...(val.count-1)
+            {
+                let innerVal = val[i]! as AnyObject
+                
+                let approved = innerVal.value(forKey: "approved") as! String
+                if(approved == "declined")
+                {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
 }
