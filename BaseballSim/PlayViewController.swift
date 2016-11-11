@@ -12,6 +12,16 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
 {
     // MARK: Properties
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var team1Label: UILabel!
+    @IBOutlet weak var team2Label: UILabel!
+    @IBOutlet weak var base1Label: UILabel!
+    @IBOutlet weak var base2Label: UILabel!
+    @IBOutlet weak var base3Label: UILabel!
+    @IBOutlet weak var ballsLabel: UILabel!
+    @IBOutlet weak var strikesLabel: UILabel!
+    @IBOutlet weak var outsLabel: UILabel!
+    @IBOutlet weak var teamAtBatLabel: UILabel!
+    @IBOutlet weak var inningLabel: UILabel!
     
     
     var items: [String] = ["A", "B", "C"]
@@ -21,6 +31,7 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
     var game = Game(id: 43, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var gameAction = GameAction(id: -1, game_id: -1, team_at_bat: -1, team1_score: -1, team2_score: -1, balls: -1, strikes: -1, outs: -1, inning: -1, type: "", message: "", date_created: "")
     var gameEvents:[GameAction] = []
+    var gamePosition = GamePosition(id: -1, game_action_id: -1, onfirst_id: -1, onsecond_id: -1, onthird_id: -1, date_created: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +51,48 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        //gameService.getEvents(game: game)
+        gameEvents = gameService.getEvents(game: game)
+        //Set events in reverse order
+        gameEvents.reverse()
+        
+        let lastAction = gameEvents[0]
+        inningLabel.text = String(lastAction.inning)
+        team1Label.text = String(lastAction.team1_score)
+        team2Label.text = String(lastAction.team2_score)
+        ballsLabel.text = String(lastAction.balls)
+        strikesLabel.text = String(lastAction.strikes)
+        outsLabel.text = String(lastAction.outs)
+        teamAtBatLabel.text = "Team at Bat: \(lastAction.team_at_bat)"
+        
+        gamePosition = gameService.getLatestPosition(game: game)
+        base1Label.text = String(gamePosition.onfirst_id)
+        base2Label.text = String(gamePosition.onsecond_id)
+        base3Label.text = String(gamePosition.onthird_id)
     }
     
     @IBAction func nextActionButton(_ sender: UIButton)
     {
+        //Create next event
+        gameService.nextEvent(game: game)
+        
         gameAction = gameService.getLatestEvent(game: game)
         gameEvents.insert(gameAction, at: 0)
         
-        //Update View
+        inningLabel.text = String(gameAction.inning)
+        team1Label.text = String(gameAction.team1_score)
+        team2Label.text = String(gameAction.team2_score)
+        ballsLabel.text = String(gameAction.balls)
+        strikesLabel.text = String(gameAction.strikes)
+        outsLabel.text = String(gameAction.outs)
+        teamAtBatLabel.text = "Team at Bat: \(gameAction.team_at_bat)"
+        
+        gamePosition = gameService.getLatestPosition(game: game)
+        base1Label.text = String(gamePosition.onfirst_id)
+        base2Label.text = String(gamePosition.onsecond_id)
+        base3Label.text = String(gamePosition.onthird_id)
+
+        
+        //Update TableView
         let indexPath = IndexPath (row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -64,6 +108,8 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let gameAction = self.gameEvents[indexPath.row]
         cell.textLabel?.text = gameAction.message
+        
+        cell.layer.borderWidth = 0.6;
         
         return cell
     }

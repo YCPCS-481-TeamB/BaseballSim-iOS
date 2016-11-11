@@ -160,7 +160,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgj-s5-dKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2489" y="-949"/>
+            <point key="canvasLocation" x="2430" y="-1224"/>
         </scene>
         <!--Add Team-->
         <scene sceneID="wCJ-uC-5jc">
@@ -239,7 +239,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3e-pF-oXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F8g-cl-eF8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4316" y="-949"/>
+            <point key="canvasLocation" x="4316" y="-1640"/>
         </scene>
         <!--Add Game-->
         <scene sceneID="eMc-zm-aDI">
@@ -318,7 +318,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7t-9F-TxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zlQ-PY-ddW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4316" y="25"/>
+            <point key="canvasLocation" x="4316" y="-432"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DX4-SA-nhb">
@@ -358,7 +358,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84H-D7-M8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1550" y="-948"/>
+            <point key="canvasLocation" x="1550" y="-1225"/>
         </scene>
         <!--My Games-->
         <scene sceneID="07k-ml-e2k">
@@ -477,10 +477,88 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="s7k-BL-NVS" kind="presentation" identifier="currentGame" id="xSw-kK-0ML"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFh-v5-yZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2489" y="25"/>
+        </scene>
+        <!--Game-->
+        <scene sceneID="tnl-Ux-YjE">
+            <objects>
+                <viewController id="tVs-ym-HeC" customClass="GameViewController" customModule="BaseballSim" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QAW-xT-Vg5"/>
+                        <viewControllerLayoutGuide type="bottom" id="lZN-88-yDk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qMf-cY-UYe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-5D-d8X">
+                                <rect key="frame" x="137" y="72" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.003916539252" green="0.50310516360000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Start Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startGameButton:" destination="tVs-ym-HeC" eventType="touchUpInside" id="CFW-zC-2RH"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vxh-it-Fj5">
+                                <rect key="frame" x="0.0" y="204" width="375" height="463"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="p7a-pf-arp" customClass="GameActionTableViewCell" customModule="BaseballSim" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p7a-pf-arp" id="BjN-qK-w2O">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wef-1d-x1f">
+                                                    <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="wef-1d-x1f" id="OnE-oQ-Ziw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="tVs-ym-HeC" id="nuC-gr-Yn9"/>
+                                    <outlet property="delegate" destination="tVs-ym-HeC" id="22g-t4-p4D"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Game" id="6HS-mg-72g">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Hg8-Sl-R0H">
+                            <connections>
+                                <segue destination="y6O-LM-BHe" kind="unwind" unwindAction="cancelAddGameWithSegue:" id="dCi-qa-qSr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="startButton" destination="dbc-5D-d8X" id="3Ya-Wz-eLd"/>
+                        <outlet property="tableView" destination="Vxh-it-Fj5" id="jrN-tk-Scr"/>
+                        <segue destination="H0h-lm-1ir" kind="presentation" identifier="startGame" id="vKj-0I-GqJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCL-C5-XRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="y6O-LM-BHe" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4316" y="360"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f3S-0o-KFI">
@@ -498,7 +576,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dox-eb-8od" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3262" y="-949"/>
+            <point key="canvasLocation" x="3374" y="-1640"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Zg-Lc-gSW">
@@ -516,7 +594,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luB-R3-akW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3303" y="25"/>
+            <point key="canvasLocation" x="3375" y="-432"/>
         </scene>
         <!--Current Game-->
         <scene sceneID="PZH-tY-gFx">
@@ -530,7 +608,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-2q-Z8Q">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-2q-Z8Q">
                                 <rect key="frame" x="16" y="366" width="343" height="244"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -566,7 +644,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGf-9I-Iu0">
-                                <rect key="frame" x="137" y="72" width="60" height="21"/>
+                                <rect key="frame" x="136" y="72" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inning:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRO-uo-5Gx">
+                                <rect key="frame" x="16" y="72" width="58" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -695,12 +780,29 @@
                                     <action selector="nextActionButton:" destination="EHj-cd-d8A" eventType="touchUpInside" id="2Aj-cy-npG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbc-Pu-Pfd">
+                                <rect key="frame" x="71" y="72" width="16" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Current Game" id="l8S-Dm-iog"/>
                     <connections>
+                        <outlet property="ballsLabel" destination="Bkw-KX-OJf" id="bnA-mR-VOO"/>
+                        <outlet property="base1Label" destination="OiG-g5-iok" id="mpj-DS-iv7"/>
+                        <outlet property="base2Label" destination="0Rk-LR-qF9" id="mEb-wx-8Hf"/>
+                        <outlet property="base3Label" destination="LIP-JA-9Fu" id="8mD-Xx-isR"/>
+                        <outlet property="inningLabel" destination="rbc-Pu-Pfd" id="56D-LN-jtH"/>
+                        <outlet property="outsLabel" destination="acz-Jm-a83" id="Msu-qX-z38"/>
+                        <outlet property="strikesLabel" destination="Y3b-y2-vaY" id="ECZ-XW-xyO"/>
                         <outlet property="tableView" destination="8Rz-2q-Z8Q" id="keu-aj-OtG"/>
+                        <outlet property="team1Label" destination="r1t-tT-YTl" id="x7E-Ql-OaP"/>
+                        <outlet property="team2Label" destination="f7w-SC-wgR" id="zio-u1-pHy"/>
+                        <outlet property="teamAtBatLabel" destination="4nm-jp-Z0V" id="jlT-PB-96m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzT-oN-8r2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -884,6 +986,41 @@
             </objects>
             <point key="canvasLocation" x="1549.5999999999999" y="1127.5862068965519"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bv9-Tj-lqu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s7k-BL-NVS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p6t-PS-pad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tVs-ym-HeC" kind="relationship" relationship="rootViewController" id="Qkz-tZ-GFM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VSb-DA-XKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3373.5999999999999" y="360.2698650674663"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="el2-QZ-ILE">
+            <objects>
+                <viewController id="C0k-PE-gEs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uKS-sm-S8S"/>
+                        <viewControllerLayoutGuide type="bottom" id="O2R-CV-B1u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Mz-A0-urp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPH-Vw-wqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="FieldImage" width="100" height="100"/>
@@ -893,4 +1030,7 @@
         <image name="TeamIcon" width="25" height="25"/>
         <image name="TeamLargeIcon" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kXh-q1-Aab"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -19,6 +19,7 @@ class GamesTableViewController: UITableViewController
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var gameService = GameService(auth_token: "")
+    var currentGame:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,10 +109,22 @@ class GamesTableViewController: UITableViewController
         return cell
     }
     
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        //Perform segue
+        let game = user.games[indexPath.row] as Game
+        self.currentGame = game
+        self.performSegue(withIdentifier: "currentGame", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "currentGame")
+        {
+            let navController = segue.destination as! UINavigationController
+            let gameViewController = navController.viewControllers.first as! GameViewController
+            gameViewController.game = currentGame
+            gameViewController.gameService = gameService
+        }
     }
 
 }
