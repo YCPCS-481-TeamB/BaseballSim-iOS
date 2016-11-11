@@ -17,8 +17,8 @@ class ApiRoutes
     
     struct Users
     {
-        //let api = "https://baseballsim-koopaluigi.c9users.io/api/users"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/users"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/users"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/users"                 //Heroku
         
         var getUsers:String         // GET      ()          ()
         var getUserTeams:String     // GET      (use id)    ()
@@ -47,8 +47,8 @@ class ApiRoutes
     
     struct Teams
     {
-        //let api = "https://baseballsim-koopaluigi.c9users.io/api/teams"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/teams"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/teams"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/teams"                 //Heroku
         
         var allTeams:String           // GET      ()          ()
         var createTeam:String           // POST     ()          (Team name, League Id)
@@ -75,27 +75,26 @@ class ApiRoutes
     
     struct Games
     {
-        //let api = "https://baseballsim-koopaluigi.c9users.io/api/games"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/games"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/games"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/games"                 //Heroku
         
-        //var allTeams:String             // GET      ()          ()
         var createGame:String           // POST     ()          (Team name, League Id)
-        /*
-        var updateTeamById:String       // POST     (use id)    (Team name)
-        var getTeamById:String          // GET      (use id)
-        var deleteTeamById:String       // DELETE   (use id)
-        var getPlayersByTeamId:String   // GET      (use id)
-        */
+        var startGame:String            // POST     (use id)    ()
+        var getLatestPositions:String   // GET      (use id)    ()
+        var getAllEvents:String         // GET      (use id)    ()
+        var getLatestEvent:String       // GET      (use id)    ()
+        var getGameApproval:String      // GET      (use id)    ()
+        var nextEvent:String            // POST     (use id)    ()
+        
         init()
         {
-            //allTeams = api + "/"
             createGame = api + "/"
-            /*
-            updateTeamById = api + "/"
-            getTeamById = api + "/"
-            deleteTeamById = api + "/"
-            getPlayersByTeamId = api + "/players"
-             */
+            startGame = api + "/start"
+            getLatestPositions = api + "/positions/latest"
+            getAllEvents = api + "/events"
+            getLatestEvent = api + "/events/latest"
+            getGameApproval = api + "/approvals/state"
+            nextEvent = api + "/events/next"
         }
         
         func indexForId() -> String.Index
@@ -106,8 +105,8 @@ class ApiRoutes
     
     struct Approvals
     {
-        //let api = "https://baseballsim-koopaluigi.c9users.io/api/approvals"       //Testing
-        let api = "https://baseballsim.herokuapp.com/api/approvals"                 //Heroku
+        let api = "https://baseballsim-koopaluigi.c9users.io/api/approvals"       //Testing
+        //let api = "https://baseballsim.herokuapp.com/api/approvals"                 //Heroku
         
         //var allTeams:String             // GET      ()          ()
         var getApprovals:String           // GET      ()          ()
