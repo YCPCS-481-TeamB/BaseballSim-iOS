@@ -20,6 +20,7 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.separatorInset = UIEdgeInsets.zero
         
         //Get user info
         let defaults = UserDefaults.standard

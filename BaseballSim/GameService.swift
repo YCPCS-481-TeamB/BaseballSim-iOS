@@ -59,4 +59,9 @@ class GameService
         }
         return game
     }
+    
+    func nextEvent()
+    {
+        
+    }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E170B3A1DD5592400F87042 /* GameActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E170B391DD5592400F87042 /* GameActionTableViewCell.swift */; };
+		1E170B3C1DD5685100F87042 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E170B3B1DD5685100F87042 /* GameAction.swift */; };
 		3C3C4A991DAF8639001440C8 /* ApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */; };
 		3C3C4A9B1DB02A7C001440C8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C4A9A1DB02A7C001440C8 /* Request.swift */; };
 		3C5404B41DC6DF6900253A00 /* AddGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		1E170B391DD5592400F87042 /* GameActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActionTableViewCell.swift; sourceTree = "<group>"; };
+		1E170B3B1DD5685100F87042 /* GameAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAction.swift; sourceTree = "<group>"; };
 		3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutes.swift; sourceTree = "<group>"; };
 		3C3C4A9A1DB02A7C001440C8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		3C5404B31DC6DF6900253A00 /* AddGameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameTableViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				3C680E041DAED7CF00A9F092 /* Team.swift */,
 				3C680E061DAED7DB00A9F092 /* Game.swift */,
 				3C5AA4081DD06EC7002C64D6 /* Approval.swift */,
+				1E170B3B1DD5685100F87042 /* GameAction.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				3C5404B81DC8493E00253A00 /* SettingsViewController.swift in Sources */,
 				3C5AA4091DD06EC7002C64D6 /* Approval.swift in Sources */,
 				3C680E091DAF56A600A9F092 /* AddTeamTableViewController.swift in Sources */,
+				1E170B3C1DD5685100F87042 /* GameAction.swift in Sources */,
 				3C5404BA1DCA5B8800253A00 /* InboxTableViewCell.swift in Sources */,
 				3C3C4A9B1DB02A7C001440C8 /* Request.swift in Sources */,
 				3C680E121DAF77E700A9F092 /* GamesTableViewController.swift in Sources */,
