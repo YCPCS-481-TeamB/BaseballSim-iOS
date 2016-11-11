@@ -89,7 +89,7 @@ class ApprovalService
         })
         
         request.wait()
-        
+        /*
         var approvals:[Approval] = []
         
         // If approvals exist in the returned data from POST
@@ -109,5 +109,6 @@ class ApprovalService
                 //approvals.append(approval)
             }
         }
+        */
     }
 }
