@@ -1005,23 +1005,6 @@
             </objects>
             <point key="canvasLocation" x="3373.5999999999999" y="360.2698650674663"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="el2-QZ-ILE">
-            <objects>
-                <viewController id="C0k-PE-gEs" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uKS-sm-S8S"/>
-                        <viewControllerLayoutGuide type="bottom" id="O2R-CV-B1u"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0Mz-A0-urp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QPH-Vw-wqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="FieldImage" width="100" height="100"/>

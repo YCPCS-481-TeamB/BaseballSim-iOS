@@ -201,5 +201,51 @@ class UserService
         //user.printVals()
         return ""
     }
+    
+    func getUserGames(user_id:Int)
+    {
+        let request = DispatchGroup.init()
+        
+        //Request games
+        request.enter()
+        
+        var url = apiRoutes.user.getUserGames
+        
+        //Add id to url
+        let userId = ("/" + String(user_id)).characters.reversed()
+        
+        for i in userId.indices
+        {
+            url.insert(userId[i], at: apiRoutes.user.indexForId())
+        }
+        
+        requests.getRequest(url: url, params: self.dataParams as [String : AnyObject], headers: self.dataHeaders, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        if((requests.getDictionary["games"]! as AnyObject).count != 0)
+        {
+            let gameVal = requests.getDictionary.value(forKey: "games")! as AnyObject
+            
+            //Find user within user
+            for i in 0...(gameVal.count-1)
+            {
+                let innerVal = gameVal[i]! as AnyObject
+                
+                let id = innerVal.value(forKey: "id") as! Int
+                let league_id = innerVal.value(forKey: "league_id") as! Int
+                let field_id = innerVal.value(forKey: "field_id") as! Int
+                let team1_id = innerVal.value(forKey: "team1_id") as! Int
+                let team2_id = innerVal.value(forKey: "team2_id") as! Int
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                
+                user.setGames(id: id, league_id: league_id, field_id: field_id, team1_id: team1_id, team2_id: team2_id, date_created: date_created)
+            }
+        }
+
+    }
 
 }

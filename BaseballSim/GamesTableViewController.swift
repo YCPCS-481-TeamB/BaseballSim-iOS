@@ -18,6 +18,7 @@ class GamesTableViewController: UITableViewController
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
+    var userService = UserService()
     var gameService = GameService(auth_token: "")
     var currentGame:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     
@@ -36,6 +37,13 @@ class GamesTableViewController: UITableViewController
             }
         }
         
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+    }
+    
+    func update()
+    {
+        userService.getUserGames(user_id: user.id)
+        self.tableView.reloadData()
     }
     
     @IBAction func cancelAddGame(segue:UIStoryboardSegue)

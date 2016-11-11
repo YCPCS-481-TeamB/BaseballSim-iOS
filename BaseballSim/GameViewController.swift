@@ -34,7 +34,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func startGameButton(_ sender: UIButton)
     {
-        if(gameEvents.isEmpty)
+        if(gameEvents.isEmpty && gameService.isGameApproved(game_id: game.id))
         {
             gameService.startGame(game: game)
             self.performSegue(withIdentifier: "startGame", sender: self)

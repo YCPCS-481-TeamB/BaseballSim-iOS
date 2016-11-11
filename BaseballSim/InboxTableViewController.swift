@@ -31,6 +31,14 @@ class InboxTableViewController: UITableViewController
         }
         
         user.approvals = approvalService.getApprovals()
+        
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+    }
+    
+    func update()
+    {
+        user.approvals = approvalService.getApprovals()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
