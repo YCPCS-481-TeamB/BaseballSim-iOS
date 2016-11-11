@@ -22,13 +22,14 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var outsLabel: UILabel!
     @IBOutlet weak var teamAtBatLabel: UILabel!
     @IBOutlet weak var inningLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
     
     
     var items: [String] = ["A", "B", "C"]
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var gameService = GameService(auth_token: "")
-    var game = Game(id: 43, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
+    var game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var gameAction = GameAction(id: -1, game_id: -1, team_at_bat: -1, team1_score: -1, team2_score: -1, balls: -1, strikes: -1, outs: -1, inning: -1, type: "", message: "", date_created: "")
     var gameEvents:[GameAction] = []
     var gamePosition = GamePosition(id: -1, game_action_id: -1, onfirst_id: -1, onsecond_id: -1, onthird_id: -1, date_created: "")
@@ -70,6 +71,16 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
             base1Label.text = String(gamePosition.onfirst_id)
             base2Label.text = String(gamePosition.onsecond_id)
             base3Label.text = String(gamePosition.onthird_id)
+        }
+        else
+        {
+            nextButton.isEnabled = false;
+            let gameAlert = UIAlertController(title: "Select Game", message: "Please go to the games section and start or resume a game!", preferredStyle: UIAlertControllerStyle.alert)
+            
+            gameAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: {  (action: UIAlertAction!) in
+            }))
+            
+            present(gameAlert, animated: true, completion: nil)
         }
     }
     

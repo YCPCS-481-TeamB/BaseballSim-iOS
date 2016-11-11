@@ -797,6 +797,7 @@
                         <outlet property="base2Label" destination="0Rk-LR-qF9" id="mEb-wx-8Hf"/>
                         <outlet property="base3Label" destination="LIP-JA-9Fu" id="8mD-Xx-isR"/>
                         <outlet property="inningLabel" destination="rbc-Pu-Pfd" id="56D-LN-jtH"/>
+                        <outlet property="nextButton" destination="Ccp-5h-mBd" id="xgV-eZ-l7n"/>
                         <outlet property="outsLabel" destination="acz-Jm-a83" id="Msu-qX-z38"/>
                         <outlet property="strikesLabel" destination="Y3b-y2-vaY" id="ECZ-XW-xyO"/>
                         <outlet property="tableView" destination="8Rz-2q-Z8Q" id="keu-aj-OtG"/>
