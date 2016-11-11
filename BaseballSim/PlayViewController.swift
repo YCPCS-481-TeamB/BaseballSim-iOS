@@ -55,19 +55,22 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Set events in reverse order
         gameEvents.reverse()
         
-        let lastAction = gameEvents[0]
-        inningLabel.text = String(lastAction.inning)
-        team1Label.text = String(lastAction.team1_score)
-        team2Label.text = String(lastAction.team2_score)
-        ballsLabel.text = String(lastAction.balls)
-        strikesLabel.text = String(lastAction.strikes)
-        outsLabel.text = String(lastAction.outs)
-        teamAtBatLabel.text = "Team at Bat: \(lastAction.team_at_bat)"
+        if(!gameEvents.isEmpty)
+        {
+            let lastAction = gameEvents[0]
+            inningLabel.text = String(lastAction.inning)
+            team1Label.text = String(lastAction.team1_score)
+            team2Label.text = String(lastAction.team2_score)
+            ballsLabel.text = String(lastAction.balls)
+            strikesLabel.text = String(lastAction.strikes)
+            outsLabel.text = String(lastAction.outs)
+            teamAtBatLabel.text = "Team at Bat: \(lastAction.team_at_bat)"
         
-        gamePosition = gameService.getLatestPosition(game: game)
-        base1Label.text = String(gamePosition.onfirst_id)
-        base2Label.text = String(gamePosition.onsecond_id)
-        base3Label.text = String(gamePosition.onthird_id)
+            gamePosition = gameService.getLatestPosition(game: game)
+            base1Label.text = String(gamePosition.onfirst_id)
+            base2Label.text = String(gamePosition.onsecond_id)
+            base3Label.text = String(gamePosition.onthird_id)
+        }
     }
     
     @IBAction func nextActionButton(_ sender: UIButton)

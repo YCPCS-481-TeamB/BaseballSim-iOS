@@ -34,21 +34,38 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func startGameButton(_ sender: UIButton)
     {
-        if(!gameEvents.isEmpty)
+        if(gameEvents.isEmpty)
         {
             gameService.startGame(game: game)
+            self.performSegue(withIdentifier: "startGame", sender: self)
         }
-        self.performSegue(withIdentifier: "startGame", sender: self)
+        else if(!gameService.isGameApproved(game_id: game.id))
+        {
+            let approvalAlert = UIAlertController(title: "Approval", message: "This game must be approved! Check your inbox!", preferredStyle: UIAlertControllerStyle.alert)
+            
+            approvalAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: {  (action: UIAlertAction!) in
+            }))
+            
+            present(approvalAlert, animated: true, completion: nil)
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "startGame", sender: self)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "startGame")
         {
-            let navController = segue.destination as! UINavigationController
+            let tabController = segue.destination as! UITabBarController
+            let navController = tabController.viewControllers?[2] as! UINavigationController
             let playViewController = navController.viewControllers.first as! PlayViewController
             playViewController.game = game
             playViewController.gameService = gameService
+            
+            tabController.selectedIndex = 2
         }
     }
     

@@ -552,7 +552,7 @@
                     <connections>
                         <outlet property="startButton" destination="dbc-5D-d8X" id="3Ya-Wz-eLd"/>
                         <outlet property="tableView" destination="Vxh-it-Fj5" id="jrN-tk-Scr"/>
-                        <segue destination="H0h-lm-1ir" kind="presentation" identifier="startGame" id="vKj-0I-GqJ"/>
+                        <segue destination="mus-kk-9XW" kind="presentation" identifier="startGame" id="QBu-ov-3A0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCL-C5-XRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1031,6 +1031,6 @@
         <image name="TeamLargeIcon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kXh-q1-Aab"/>
+        <segue reference="QBu-ov-3A0"/>
     </inferredMetricsTieBreakers>
 </document>
