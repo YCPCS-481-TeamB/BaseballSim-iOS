@@ -106,7 +106,6 @@ class GameService
     
     func getLatestEvent(game:Game) -> GameAction
     {
-        let game_id = game.id
         var gameAction:GameAction = GameAction(id: -1, game_id: -1, team_at_bat: -1, team1_score: -1, team2_score: -1, balls: -1, strikes: -1, outs: -1, inning: -1, type: "", message: "", date_created: "")
         
         let request = DispatchGroup.init()
@@ -114,11 +113,11 @@ class GameService
         var url = apiRoutes.game.getLatestEvent
         
         //Add id to url
-        let itemId = ("/" + String(game_id)).characters.reversed()
+        let gameId = ("/" + String(game.id)).characters.reversed()
         
-        for i in itemId.indices
+        for i in gameId.indices
         {
-            url.insert(itemId[i], at: apiRoutes.approvals.indexForId())
+            url.insert(gameId[i], at: apiRoutes.game.indexForId())
         }
         
         //params = []
@@ -132,24 +131,23 @@ class GameService
         
         request.wait()
         
-         // If games exist in the returned data from GET
-         if (requests.getDictionary["game_id"]! as AnyObject).count != 0
-         {
-            let id = requests.getDictionary.value(forKey: "id")! as! Int
-            let game_id = requests.getDictionary.value(forKey: "game_id")! as! Int
-            let team_at_bat = requests.getDictionary.value(forKey: "team_at_bat")! as! Int
-            let team1_score = requests.getDictionary.value(forKey: "team1_score")! as! Int
-            let team2_score = requests.getDictionary.value(forKey: "team2_score")! as! Int
-            let balls = requests.getDictionary.value(forKey: "balls")! as! Int
-            let strikes = requests.getDictionary.value(forKey: "strikes")! as! Int
-            let outs = requests.getDictionary.value(forKey: "outs")! as! Int
-            let inning = requests.getDictionary.value(forKey: "inning")! as! Int
-            let type = requests.getDictionary.value(forKey: "type")! as! String
-            let message = requests.getDictionary.value(forKey: "message")! as! String
-            let date_created = requests.getDictionary.value(forKey: "date_created")! as! String
-            gameAction = GameAction(id: id, game_id: game_id, team_at_bat: team_at_bat, team1_score: team1_score, team2_score: team2_score, balls: balls, strikes: strikes, outs: outs, inning: inning, type: type, message: message, date_created: date_created)
-         }
-         return gameAction
+        // If games exist in the returned data from GET
+        
+        let id = requests.getDictionary.value(forKey: "id")! as! Int
+        let game_id = requests.getDictionary.value(forKey: "game_id")! as! Int
+        let team_at_bat = requests.getDictionary.value(forKey: "team_at_bat")! as! Int
+        let team1_score = requests.getDictionary.value(forKey: "team1_score")! as! Int
+        let team2_score = requests.getDictionary.value(forKey: "team2_score")! as! Int
+        let balls = requests.getDictionary.value(forKey: "balls")! as! Int
+        let strikes = requests.getDictionary.value(forKey: "strikes")! as! Int
+        let outs = requests.getDictionary.value(forKey: "outs")! as! Int
+        let inning = requests.getDictionary.value(forKey: "inning")! as! Int
+        let type = requests.getDictionary.value(forKey: "type")! as! String
+        let message = requests.getDictionary.value(forKey: "message")! as! String
+        let date_created = requests.getDictionary.value(forKey: "date_created")! as! String
+        gameAction = GameAction(id: id, game_id: game_id, team_at_bat: team_at_bat, team1_score: team1_score, team2_score: team2_score, balls: balls, strikes: strikes, outs: outs, inning: inning, type: type, message: message, date_created: date_created)
+ 
+        return gameAction
         
     }
     
@@ -163,11 +161,11 @@ class GameService
         var url = apiRoutes.game.getAllEvents
         
         //Add id to url
-        let itemId = ("/" + String(game_id)).characters.reversed()
+        let gameId = ("/" + String(game_id)).characters.reversed()
         
-        for i in itemId.indices
+        for i in gameId.indices
         {
-            url.insert(itemId[i], at: apiRoutes.approvals.indexForId())
+            url.insert(gameId[i], at: apiRoutes.game.indexForId())
         }
         
         //params = []
@@ -198,6 +196,8 @@ class GameService
             let date_created = requests.getDictionary.value(forKey: "date_created")! as! String
             gameAction = GameAction(id: id, game_id: game_id, team_at_bat: team_at_bat, team1_score: team1_score, team2_score: team2_score, balls: balls, strikes: strikes, outs: outs, inning: inning, type: type, message: message, date_created: date_created)
         }
+        
+        print(requests.getDictionary)
         return gameAction
         
     }
