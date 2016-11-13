@@ -12,7 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var firstTime:Bool = true
+    var service:UserService!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -35,6 +36,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        service = UserService()
+        
+        //If user is already logged in
+        let defaults = UserDefaults.standard
+        let key = "user"
+        if defaults.object(forKey: key) != nil
+        {
+            if let value = defaults.object(forKey: key) as? NSData
+            {
+                let user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
+                if user.auth_token != ""
+                {
+                    let userValue = service.getUserData(auth_token: user.auth_token, username: user.username)
+                    print(user.auth_token)
+                    let encodedData = NSKeyedArchiver.archivedData(withRootObject: userValue)
+                    
+                    defaults.setValue(encodedData, forKey: key)
+                    defaults.synchronize()
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+                    
+                    self.window?.rootViewController = viewController
+                }
+            }
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

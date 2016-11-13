@@ -15,7 +15,6 @@ class LoginViewController: UIViewController
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var usersCollection = [User]()
     var service:UserService!
     
     override func viewDidLoad() {
