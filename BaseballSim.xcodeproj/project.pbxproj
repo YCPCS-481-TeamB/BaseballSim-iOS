@@ -242,6 +242,7 @@
 				TargetAttributes = {
 					3C680DD41DAB5A6300A9F092 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = VJM8Z8LPTW;
 						ProvisioningStyle = Automatic;
 					};
 					3C680DE81DAB5A6300A9F092 = {
@@ -459,6 +460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VJM8Z8LPTW;
 				INFOPLIST_FILE = BaseballSim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamB.BaseballSim;
@@ -471,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VJM8Z8LPTW;
 				INFOPLIST_FILE = BaseballSim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamB.BaseballSim;

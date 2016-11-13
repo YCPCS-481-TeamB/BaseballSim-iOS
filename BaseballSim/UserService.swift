@@ -102,7 +102,8 @@ class UserService
         for i in 0...(val.count-1)
         {
             
-            let innerVal = val[i]! as AnyObject
+            let innerVal = (val as! NSArray)[i] as AnyObject
+            
             //If user is found create user
             if(innerVal.value(forKey: "username") as! String == username)
             {
@@ -149,14 +150,14 @@ class UserService
             //Find user within user
             for i in 0...(teamVal.count-1)
             {
-                let innerVal = teamVal[i]! as AnyObject
+                let innerVal = (teamVal as! NSArray)[i] as AnyObject
                     
                 let id = innerVal.value(forKey: "id") as! Int
                 let league_id = innerVal.value(forKey: "league_id") as! Int
                 let name = innerVal.value(forKey: "name") as! String
                 let date_created = innerVal.value(forKey: "date_created") as! String
                     
-                user.setTeams(id: id, league_id: league_id, name: name, date_created: date_created)
+                user.setTeams(id: id, league_id: 0, name: name, date_created: date_created)
             }
         }
         
@@ -185,7 +186,7 @@ class UserService
             //Find user within user
             for i in 0...(gameVal.count-1)
             {
-                let innerVal = gameVal[i]! as AnyObject
+                let innerVal = (gameVal as! NSArray)[i] as AnyObject
                     
                 let id = innerVal.value(forKey: "id") as! Int
                 let league_id = innerVal.value(forKey: "league_id") as! Int
@@ -233,7 +234,7 @@ class UserService
             //Find user within user
             for i in 0...(gameVal.count-1)
             {
-                let innerVal = gameVal[i]! as AnyObject
+                let innerVal = (gameVal as! NSArray)[i] as AnyObject
                 
                 let id = innerVal.value(forKey: "id") as! Int
                 let league_id = innerVal.value(forKey: "league_id") as! Int

@@ -37,13 +37,14 @@ class GamesTableViewController: UITableViewController
             }
         }
         
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
     }
     
     func update()
     {
         userService.getUserGames(user_id: user.id)
         self.tableView.reloadData()
+        
     }
     
     @IBAction func cancelAddGame(segue:UIStoryboardSegue)
@@ -110,6 +111,10 @@ class GamesTableViewController: UITableViewController
         else if(gameService.isGameDeclined(game_id: game.id))
         {
             cell.backgroundColor = UIColor.red
+        }
+        else
+        {
+            cell.backgroundColor = UIColor.white
         }
         
         cell.layer.borderWidth = 0.6;

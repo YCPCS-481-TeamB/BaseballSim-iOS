@@ -32,7 +32,8 @@ class InboxTableViewController: UITableViewController
         
         user.approvals = approvalService.getApprovals()
         
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        
+        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
     }
     
     func update()
