@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController
             defaults.synchronize()
             
             //Redirect to the log in controller
-            self.performSegue(withIdentifier: "logOut", sender: self)            
+            self.performSegue(withIdentifier: "logOut", sender: self)
         }))
         
         logOutAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {  (action: UIAlertAction!) in

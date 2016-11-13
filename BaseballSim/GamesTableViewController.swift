@@ -21,6 +21,7 @@ class GamesTableViewController: UITableViewController
     var userService = UserService()
     var gameService = GameService(auth_token: "")
     var currentGame:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
+    var visible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,29 @@ class GamesTableViewController: UITableViewController
             }
         }
         
-        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
+        visible = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        //Update once then every 5 seconds with timer
+        update()
+        visible = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        visible = false
     }
     
     func update()
     {
-        userService.getUserGames(user_id: user.id)
-        self.tableView.reloadData()
-        
+        if visible
+        {
+            userService.getUserGames(user_id: user.id)
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func cancelAddGame(segue:UIStoryboardSegue)

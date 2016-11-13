@@ -14,6 +14,7 @@ class InboxTableViewController: UITableViewController
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var approvalService = ApprovalService(auth_token: "")
     var currentIndexPath:IndexPath = IndexPath()
+    var visible:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +34,29 @@ class InboxTableViewController: UITableViewController
         user.approvals = approvalService.getApprovals()
         
         
-        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
+        visible = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        //Update once then every 5 seconds with timer
+        update()
+        visible = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        visible = false
     }
     
     func update()
     {
-        user.approvals = approvalService.getApprovals()
-        self.tableView.reloadData()
+        if visible
+        {
+            user.approvals = approvalService.getApprovals()
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
