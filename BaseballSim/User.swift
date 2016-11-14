@@ -85,37 +85,4 @@ class User: NSObject , NSCoding
         self.approvals.append(approval)
     }
     
-    func printVals()
-    {
-        print("Here is your user!")
-        print(id)
-        print(first_name)
-        print(last_name)
-        print(username)
-        print(email)
-        print(date_created)
-        print(auth_token)
-        if(teams.count != 0)
-        {
-            for i in 0...teams.count-1
-            {
-                teams[i].printVals()
-            }
-        }
-        if(games.count != 0)
-        {
-            for i in 0...games.count-1
-            {
-                games[i].printVals()
-            }
-        }
-        if(approvals.count != 0)
-        {
-            for i in 0...approvals.count-1
-            {
-                print(approvals[i].id)
-            }
-        }
-    }
-    
 }

@@ -46,7 +46,7 @@ class GameService
         
         request.wait()
         // If games exist in the returned data from POST
-        if (requests.postDictionary["game"]! as AnyObject).count != 0
+        if requests.postDictionary["game"] != nil && (requests.postDictionary["game"]! as AnyObject).count != 0
         {
             let val = requests.postDictionary.value(forKey: "game")! as AnyObject
             let id = val.value(forKey: "id") as! Int
@@ -145,7 +145,7 @@ class GameService
         request.wait()
         
         // If games exist in the returned data from GET
-        if (requests.getDictionary["positions"]! as AnyObject).count != 0
+        if requests.getDictionary["positions"] != nil && (requests.getDictionary["positions"]! as AnyObject).count != 0
         {
             let val = requests.getDictionary.value(forKey: "positions")! as AnyObject
             let id = val.value(forKey: "id")! as! Int
@@ -188,7 +188,7 @@ class GameService
         request.wait()
         
         // If games exist in the returned data from GET
-        if (requests.getDictionary["events"]! as AnyObject).count != 0
+        if requests.getDictionary["events"] != nil && (requests.getDictionary["events"]! as AnyObject).count != 0
         {
             let val = requests.getDictionary.value(forKey: "events")! as AnyObject
             let id = val.value(forKey: "id")! as! Int
@@ -239,7 +239,7 @@ class GameService
         request.wait()
         
         // If games exist in the returned data from GET
-        if (requests.getDictionary["events"]! as AnyObject).count != 0
+        if requests.getDictionary["events"] != nil && (requests.getDictionary["events"]! as AnyObject).count != 0
         {
             let val = requests.getDictionary.value(forKey: "events")! as AnyObject
             for i in 0...(val.count-1)
@@ -294,7 +294,7 @@ class GameService
         request.wait()
         
         // If games exist in the returned data from GET
-        if (requests.getDictionary["approvals"]! as AnyObject).count != 0
+        if requests.getDictionary["approvals"] != nil && (requests.getDictionary["approvals"]! as AnyObject).count != 0
         {
             let val = requests.getDictionary.value(forKey: "approvals")! as AnyObject
             for i in 0...(val.count-1)
@@ -339,7 +339,7 @@ class GameService
         request.wait()
         
         // If games exist in the returned data from GET
-        if (requests.getDictionary["approvals"]! as AnyObject).count != 0
+        if requests.getDictionary["approvals"] != nil && (requests.getDictionary["approvals"]! as AnyObject).count != 0
         {
             let val = requests.getDictionary.value(forKey: "approvals")! as AnyObject
             for i in 0...(val.count-1)
