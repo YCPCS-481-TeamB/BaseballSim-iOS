@@ -13,6 +13,7 @@ class InboxTableViewController: UITableViewController
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var approvalService = ApprovalService(auth_token: "")
+    var approvals:[Approval] = []
     var currentIndexPath:IndexPath = IndexPath()
     var visible:Bool = false
 
@@ -31,7 +32,7 @@ class InboxTableViewController: UITableViewController
             }
         }
         
-        user.approvals = approvalService.getApprovals()
+        approvals = approvalService.getApprovals()
         
         
         _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
@@ -54,7 +55,7 @@ class InboxTableViewController: UITableViewController
     {
         if visible
         {
-            user.approvals = approvalService.getApprovals()
+            approvals = approvalService.getApprovals()
             self.tableView.reloadData()
         }
     }
@@ -73,13 +74,13 @@ class InboxTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return user.approvals.count
+        return approvals.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InboxCell", for: indexPath) as! InboxTableViewCell
                 
-        let approval = user.approvals[indexPath.row] as Approval
+        let approval = approvals[indexPath.row] as Approval
         cell.idLabel.text = String(approval.id)
         
         currentIndexPath = indexPath
@@ -93,9 +94,9 @@ class InboxTableViewController: UITableViewController
     
     func accept(_ sender: UIButton!)
     {
-        let approval_id = user.approvals[sender.tag].id
+        let approval_id = approvals[sender.tag].id
         approvalService.approve(id: String(approval_id))
-        user.approvals.remove(at: sender.tag)
+        approvals.remove(at: sender.tag)
         tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: UITableViewRowAnimation.automatic)
     }
 
