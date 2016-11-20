@@ -38,6 +38,8 @@
 		3C680E121DAF77E700A9F092 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E111DAF77E700A9F092 /* GamesTableViewController.swift */; };
 		3C680E141DAF780D00A9F092 /* GamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E131DAF780D00A9F092 /* GamesTableViewCell.swift */; };
 		3C913C501DD7F2B800C11713 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C913C4F1DD7F2B800C11713 /* LaunchScreenViewController.swift */; };
+		3CEA0C971DE24DE1004316B8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA0C961DE24DE0004316B8 /* TabBarController.swift */; };
+		3CEA0C991DE24E7E004316B8 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA0C981DE24E7E004316B8 /* UIImage+ImageColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		3C680E111DAF77E700A9F092 /* GamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
 		3C680E131DAF780D00A9F092 /* GamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewCell.swift; sourceTree = "<group>"; };
 		3C913C4F1DD7F2B800C11713 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		3CEA0C961DE24DE0004316B8 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		3CEA0C981DE24E7E004316B8 /* UIImage+ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 				3C5404BB1DD0578700253A00 /* ApprovalService.swift */,
 				3C3C4A981DAF8639001440C8 /* ApiRoutes.swift */,
 				3C3C4A9A1DB02A7C001440C8 /* Request.swift */,
+				3CEA0C981DE24E7E004316B8 /* UIImage+ImageColor.swift */,
 			);
 			path = BaseballSim;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				3C5AA40C1DD42235002C64D6 /* PlayViewController.swift */,
 				1E411AA01DD6553F00E06858 /* GameViewController.swift */,
 				3C913C4F1DD7F2B800C11713 /* LaunchScreenViewController.swift */,
+				3CEA0C961DE24DE0004316B8 /* TabBarController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 				3C680E051DAED7CF00A9F092 /* Team.swift in Sources */,
 				3C5AA40B1DD0749A002C64D6 /* InboxTableViewController.swift in Sources */,
 				3C680E0B1DAF62E300A9F092 /* TeamService.swift in Sources */,
+				3CEA0C991DE24E7E004316B8 /* UIImage+ImageColor.swift in Sources */,
 				3C5404B61DC6ED2300253A00 /* GameService.swift in Sources */,
 				3C680E141DAF780D00A9F092 /* GamesTableViewCell.swift in Sources */,
 				1E170B3A1DD5592400F87042 /* GameActionTableViewCell.swift in Sources */,
@@ -324,6 +331,7 @@
 				1E170B3C1DD5685100F87042 /* GameAction.swift in Sources */,
 				3C5404BA1DCA5B8800253A00 /* InboxTableViewCell.swift in Sources */,
 				3C3C4A9B1DB02A7C001440C8 /* Request.swift in Sources */,
+				3CEA0C971DE24DE1004316B8 /* TabBarController.swift in Sources */,
 				3C680E121DAF77E700A9F092 /* GamesTableViewController.swift in Sources */,
 				3C680E0D1DAF69EE00A9F092 /* TeamsTableViewController.swift in Sources */,
 			);
