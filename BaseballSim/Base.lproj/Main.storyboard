@@ -392,9 +392,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="LLr-Id-j2H">
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-Br-qOZ">
+                                    <rect key="frame" x="0.0" y="-3" width="375" height="49"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <items>
+                                        <tabBarItem title="Approved" image="GameIcon" id="lwv-EM-9f1"/>
+                                        <tabBarItem title="Pending" image="GameIcon" id="lVg-XL-Qes"/>
+                                    </items>
+                                </tabBar>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GameCell" id="f9E-Z5-UBQ" customClass="GamesTableViewCell" customModule="BaseballSim" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9E-Z5-UBQ" id="2gk-XJ-dJQ">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
@@ -483,6 +499,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="approvalTabBar" destination="Prb-Br-qOZ" id="nMI-3b-kRJ"/>
                         <segue destination="s7k-BL-NVS" kind="presentation" identifier="currentGame" id="xSw-kK-0ML"/>
                     </connections>
                 </tableViewController>

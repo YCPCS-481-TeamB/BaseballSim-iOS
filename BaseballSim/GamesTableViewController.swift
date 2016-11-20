@@ -15,6 +15,7 @@ class GamesTableViewController: UITableViewController
     @IBOutlet weak var team2IdLabel: UILabel!
     @IBOutlet weak var fieldIdLabel: UILabel!
     @IBOutlet weak var leagueIdLabel: UILabel!
+    @IBOutlet weak var approvalTabBar: UITabBar!
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
@@ -40,6 +41,10 @@ class GamesTableViewController: UITableViewController
         
         _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
         visible = true
+        
+        //Set tab bar items
+        approvalTabBar.unselectedItemTintColor = UIColor.black
+        approvalTabBar.selectedItem = approvalTabBar.items?[0]
     }
     
     override func viewWillAppear(_ animated: Bool)
