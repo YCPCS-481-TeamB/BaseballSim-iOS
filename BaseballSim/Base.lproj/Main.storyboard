@@ -408,7 +408,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="LLr-Id-j2H">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-Br-qOZ">
@@ -427,7 +427,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="uaI-Sm-xbl">
-                            <rect key="frame" x="0.0" y="147" width="375" height="58"/>
+                            <rect key="frame" x="0.0" y="211" width="375" height="58"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="CK5-QJ-PGN">
@@ -860,7 +860,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ccb-U8-HVh">
-                            <rect key="frame" x="0.0" y="143" width="375" height="58"/>
+                            <rect key="frame" x="0.0" y="207" width="375" height="58"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UKo-li-WI5">
@@ -956,11 +956,11 @@
             </objects>
             <point key="canvasLocation" x="2488.8000000000002" y="1800.4497751124438"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings-->
         <scene sceneID="BKP-tE-Uzy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DQW-gP-HGg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="WeI-Bm-icb"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon" id="WeI-Bm-icb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FOh-bt-Tfd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1003,11 +1003,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="e3Q-IS-bFY"/>
                     <connections>
-                        <segue destination="aAZ-Ie-6yF" kind="unwind" identifier="logOut" unwindAction="prepareForUnwindWithSegue:" id="gKp-3w-O1z"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logOut" id="d2s-k6-g2Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N53-Js-Qsm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="aAZ-Ie-6yF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2489" y="2481"/>
         </scene>
@@ -1073,10 +1072,11 @@
         <image name="GameIcon" width="25" height="25"/>
         <image name="GameLargeIcon" width="512" height="512"/>
         <image name="InboxIcon" width="25" height="25"/>
+        <image name="SettingsIcon" width="25" height="25"/>
         <image name="TeamIcon" width="25" height="25"/>
         <image name="TeamLargeIcon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QBu-ov-3A0"/>
+        <segue reference="rd5-4G-epa"/>
     </inferredMetricsTieBreakers>
 </document>
