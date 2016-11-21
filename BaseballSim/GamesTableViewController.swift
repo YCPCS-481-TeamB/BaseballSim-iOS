@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GamesTableViewController: UITableViewController
+class GamesTableViewController: UITableViewController, UITabBarDelegate
 {
     // MARK: Properties
     @IBOutlet weak var team1IdLabel: UILabel!
@@ -23,6 +23,8 @@ class GamesTableViewController: UITableViewController
     var gameService = GameService(auth_token: "")
     var currentGame:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var games:[Game] = []
+    var approvedGames:[Game] = []
+    var pendingGames:[Game] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +52,31 @@ class GamesTableViewController: UITableViewController
     {
         // Update games
         games = userService.getUserGames(user_id: user.id)
+        
+        approvedGames = []
+        pendingGames = []
+        
+        for game in games
+        {
+            if gameService.isGameApproved(game_id: game.id)
+            {
+                approvedGames.append(game)
+            }
+            else
+            {
+                pendingGames.append(game)
+            }
+        }
+        if approvalTabBar.selectedItem == approvalTabBar.items?[0]
+        {
+            games = approvedGames
+        }
+        else
+        {
+            games = pendingGames
+        }
         games.reverse()
+        
         self.tableView.reloadData()
     }
     
@@ -73,10 +99,13 @@ class GamesTableViewController: UITableViewController
                 
                 if game.id != -1
                 {
-                    games.insert(game, at: 0)
-                    //Update View
-                    let indexPath = IndexPath (row: 0, section: 0)
-                    tableView.insertRows(at: [indexPath], with: .automatic)
+                    pendingGames.insert(game, at: 0)
+                    if approvalTabBar.selectedItem == approvalTabBar.items?[1]
+                    {
+                        //Update View
+                        let indexPath = IndexPath (row: 0, section: 0)
+                        tableView.insertRows(at: [indexPath], with: .automatic)
+                    }
                 }
             }
         }
@@ -110,19 +139,6 @@ class GamesTableViewController: UITableViewController
         cell.fieldIdLabel.text = String(game.field_id)
         cell.leagueIdLabel.text = String(game.league_id)
         
-        if(gameService.isGameApproved(game_id: game.id))
-        {
-            cell.backgroundColor = UIColor.green
-        }
-        else if(gameService.isGameDeclined(game_id: game.id))
-        {
-            cell.backgroundColor = UIColor.red
-        }
-        else
-        {
-            cell.backgroundColor = UIColor.white
-        }
-        
         cell.layer.borderWidth = 0.6;
 
         return cell
@@ -150,10 +166,52 @@ class GamesTableViewController: UITableViewController
     {
         //Update feed
         games = userService.getUserGames(user_id: user.id)
+        
+        approvedGames = []
+        pendingGames = []
+        
+        for game in games
+        {
+            if gameService.isGameApproved(game_id: game.id)
+            {
+                approvedGames.append(game)
+            }
+            else
+            {
+                pendingGames.append(game)
+            }
+        }
+        if approvalTabBar.selectedItem == approvalTabBar.items?[0]
+        {
+            games = approvedGames
+        }
+        else
+        {
+            games = pendingGames
+        }
         games.reverse()
         
         self.tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem)
+    {
+        switch item.tag
+        {
+            case 1:
+                games = approvedGames
+                break
+            
+            case 2:
+                games = pendingGames
+                break
+            
+            default:
+                break
+        }
+        games.reverse()
+        self.tableView.reloadData()
     }
 
 }

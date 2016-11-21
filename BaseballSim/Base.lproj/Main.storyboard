@@ -401,9 +401,12 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <items>
-                                        <tabBarItem title="Approved" image="GameIcon" id="lwv-EM-9f1"/>
-                                        <tabBarItem title="Pending" image="GameIcon" id="lVg-XL-Qes"/>
+                                        <tabBarItem tag="1" title="Approved" image="GameIcon" id="lwv-EM-9f1"/>
+                                        <tabBarItem tag="2" title="Pending" image="GameIcon" id="lVg-XL-Qes"/>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="SRY-Ds-SNQ" id="Zuf-aS-KU8"/>
+                                    </connections>
                                 </tabBar>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
