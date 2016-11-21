@@ -57,4 +57,47 @@ class TeamService
         }
         return team
     }
+    
+    func getTeam(team_id:String) -> Team
+    {
+        var team = Team(id: -1, league_id: -1, name: "", date_created: "")
+        let request = DispatchGroup.init()
+        
+        var url = apiRoutes.team.getTeamById
+        
+        //Add id to url
+        let teamId = ("/" + String(team_id)).characters.reversed()
+        
+        for i in teamId.indices
+        {
+            url.insert(teamId[i], at: apiRoutes.team.indexForId())
+        }
+        
+        request.enter()
+        
+        requests.getRequest(url: url, params: (params as [String : AnyObject]?)!, headers: headers, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        if((requests.getDictionary["team"]! as AnyObject).count != 0)
+        {
+            let teamVal = requests.getDictionary.value(forKey: "team")! as AnyObject
+            
+            //Find user within user
+            for i in 0...(teamVal.count-1)
+            {
+                let innerVal = (teamVal as! NSArray)[i] as AnyObject
+                
+                let id = innerVal.value(forKey: "id") as! Int
+                let league_id = innerVal.value(forKey: "league_id") as! Int
+                let name = innerVal.value(forKey: "name") as! String
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                team = Team(id: id, league_id: league_id, name: name, date_created: date_created)
+            }
+        }
+        return team
+    }
 }

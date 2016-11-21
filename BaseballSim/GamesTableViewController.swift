@@ -11,20 +11,19 @@ import UIKit
 class GamesTableViewController: UITableViewController, UITabBarDelegate
 {
     // MARK: Properties
-    @IBOutlet weak var team1IdLabel: UILabel!
-    @IBOutlet weak var team2IdLabel: UILabel!
-    @IBOutlet weak var fieldIdLabel: UILabel!
-    @IBOutlet weak var leagueIdLabel: UILabel!
     @IBOutlet weak var approvalTabBar: UITabBar!
-    
+    @IBOutlet weak var gamesIndicator: UIActivityIndicatorView!
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
+    var team = Team(id: -1, league_id: -1, name: "", date_created: "")
     var userService = UserService()
     var gameService = GameService(auth_token: "")
+    var teamService = TeamService(auth_token: "")
     var currentGame:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var games:[Game] = []
     var approvedGames:[Game] = []
     var pendingGames:[Game] = []
+    var teamsById:[Int:Team] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +39,7 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
                 gameService = GameService(auth_token: user.auth_token)
+                teamService = TeamService(auth_token: user.auth_token)
             }
         }
         
@@ -50,6 +50,9 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
     
     override func viewDidAppear(_ animated: Bool)
     {
+        // Show indicator
+        gamesIndicator.isHidden = false
+        
         // Update games
         games = userService.getUserGames(user_id: user.id)
         
@@ -58,6 +61,16 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
         
         for game in games
         {
+            team = teamService.getTeam(team_id: String(game.team1_id))
+            if teamsById[game.team1_id] == nil
+            {
+                teamsById[game.team1_id] = team
+            }
+            team = teamService.getTeam(team_id: String(game.team2_id))
+            if teamsById[game.team2_id] == nil
+            {
+                teamsById[game.team2_id] = team
+            }
             if gameService.isGameApproved(game_id: game.id)
             {
                 approvedGames.append(game)
@@ -77,6 +90,9 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
         }
         games.reverse()
         
+        // Hide indicator
+        gamesIndicator.isHidden = true
+        
         self.tableView.reloadData()
     }
     
@@ -95,18 +111,7 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
             let team2_id = addGameViewController.team2_id
             if(team1_id != "" && team2_id != "")
             {
-                let game = gameService.addGame(team1_id: team1_id, team2_id: team2_id)
-                
-                if game.id != -1
-                {
-                    pendingGames.insert(game, at: 0)
-                    if approvalTabBar.selectedItem == approvalTabBar.items?[1]
-                    {
-                        //Update View
-                        let indexPath = IndexPath (row: 0, section: 0)
-                        tableView.insertRows(at: [indexPath], with: .automatic)
-                    }
-                }
+                _ = gameService.addGame(team1_id: team1_id, team2_id: team2_id)
             }
         }
         
@@ -134,10 +139,11 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GamesTableViewCell
         
         let game = games[indexPath.row] as Game
-        cell.team1IdLabel.text = String(game.team1_id)
-        cell.team2IdLabel.text = String(game.team2_id)
-        cell.fieldIdLabel.text = String(game.field_id)
-        cell.leagueIdLabel.text = String(game.league_id)
+        let team1 = teamsById[game.team1_id]
+        let team2 = teamsById[game.team2_id]
+        cell.team1IdLabel.text = team1?.name
+        cell.team2IdLabel.text = team2?.name
+        cell.gameIdLabel.text = String(game.id)
         
         cell.layer.borderWidth = 0.6;
 
@@ -172,6 +178,16 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
         
         for game in games
         {
+            team = teamService.getTeam(team_id: String(game.team1_id))
+            if teamsById[game.team1_id] == nil
+            {
+                teamsById[game.team1_id] = team
+            }
+            team = teamService.getTeam(team_id: String(game.team2_id))
+            if teamsById[game.team2_id] == nil
+            {
+                teamsById[game.team2_id] = team
+            }
             if gameService.isGameApproved(game_id: game.id)
             {
                 approvedGames.append(game)
