@@ -22,10 +22,12 @@ class GamesTableViewController: UITableViewController
     var userService = UserService()
     var gameService = GameService(auth_token: "")
     var currentGame:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
-    var visible = false
+    var games:[Game] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl?.addTarget(self, action: #selector(GamesTableViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
 
         //Get user info
         let defaults = UserDefaults.standard
@@ -39,33 +41,17 @@ class GamesTableViewController: UITableViewController
             }
         }
         
-        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(GamesTableViewController.update), userInfo: nil, repeats: true)
-        visible = true
-        
         //Set tab bar items
         approvalTabBar.unselectedItemTintColor = UIColor.black
         approvalTabBar.selectedItem = approvalTabBar.items?[0]
     }
     
-    override func viewWillAppear(_ animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
-        //Update once then every 5 seconds with timer
-        update()
-        visible = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        visible = false
-    }
-    
-    func update()
-    {
-        if visible
-        {
-            userService.getUserGames(user_id: user.id)
-            self.tableView.reloadData()
-        }
+        // Update games
+        games = userService.getUserGames(user_id: user.id)
+        games.reverse()
+        self.tableView.reloadData()
     }
     
     @IBAction func cancelAddGame(segue:UIStoryboardSegue)
@@ -87,10 +73,9 @@ class GamesTableViewController: UITableViewController
                 
                 if game.id != -1
                 {
-                    user.games.append(game)
-                    
+                    games.insert(game, at: 0)
                     //Update View
-                    let indexPath = IndexPath (row: user.games.count-1, section: 0)
+                    let indexPath = IndexPath (row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
                 }
             }
@@ -112,14 +97,14 @@ class GamesTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return user.games.count
+        return games.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GamesTableViewCell
         
-        let game = user.games[indexPath.row] as Game
+        let game = games[indexPath.row] as Game
         cell.team1IdLabel.text = String(game.team1_id)
         cell.team2IdLabel.text = String(game.team2_id)
         cell.fieldIdLabel.text = String(game.field_id)
@@ -145,7 +130,7 @@ class GamesTableViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let game = user.games[indexPath.row] as Game
+        let game = games[indexPath.row] as Game
         self.currentGame = game
         self.performSegue(withIdentifier: "currentGame", sender: self)
     }
@@ -159,6 +144,16 @@ class GamesTableViewController: UITableViewController
             gameViewController.game = currentGame
             gameViewController.gameService = gameService
         }
+    }
+    
+    func handleRefresh(refreshControl:UIRefreshControl)
+    {
+        //Update feed
+        games = userService.getUserGames(user_id: user.id)
+        games.reverse()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
 }

@@ -331,8 +331,54 @@ class UserService
         return user
     }
     
-    func getUserGames(user_id:Int)
+    func getUserTeams(user_id:Int) -> [Team]
     {
+        var teams:[Team] = []
+        let request = DispatchGroup.init()
+        
+        var url = apiRoutes.user.getUserTeams
+        
+        //Add id to url
+        let userId = ("/" + String(user_id)).characters.reversed()
+        
+        for i in userId.indices
+        {
+            url.insert(userId[i], at: apiRoutes.user.indexForId())
+        }
+        
+        request.enter()
+        
+        requests.getRequest(url: url, params: (dataParams as [String : AnyObject]?)!, headers: dataHeaders, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        if((requests.getDictionary["teams"]! as AnyObject).count != 0)
+        {
+            let teamVal = requests.getDictionary.value(forKey: "teams")! as AnyObject
+            
+            //Find user within user
+            for i in 0...(teamVal.count-1)
+            {
+                let innerVal = (teamVal as! NSArray)[i] as AnyObject
+                
+                let id = innerVal.value(forKey: "id") as! Int
+                let league_id = innerVal.value(forKey: "league_id") as! Int
+                let name = innerVal.value(forKey: "name") as! String
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                let team = Team(id: id, league_id: league_id, name: name, date_created: date_created)
+                teams.append(team)
+            }
+        }
+        
+        return teams
+    }
+    
+    func getUserGames(user_id:Int) -> [Game]
+    {
+        var games:[Game] = []
         let request = DispatchGroup.init()
         
         //Request games
@@ -370,11 +416,11 @@ class UserService
                 let team1_id = innerVal.value(forKey: "team1_id") as! Int
                 let team2_id = innerVal.value(forKey: "team2_id") as! Int
                 let date_created = innerVal.value(forKey: "date_created") as! String
-                
-                user.setGames(id: id, league_id: league_id, field_id: field_id, team1_id: team1_id, team2_id: team2_id, date_created: date_created)
+                let game = Game(id: id, league_id: league_id, field_id: field_id, team1_id: team1_id, team2_id: team2_id, date_created: date_created)
+                games.append(game)
             }
         }
-
+        return games
     }
 
 }

@@ -17,8 +17,11 @@ class TeamsTableViewController: UITableViewController
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
+    var userService = UserService()
     var teamService = TeamService(auth_token: "")
     var approvalService = ApprovalService(auth_token: "")
+    var teams:[Team] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,7 @@ class TeamsTableViewController: UITableViewController
             }
         }
         
-        user.approvals = approvalService.getApprovals()
+        teams = userService.getUserTeams(user_id: user.id)
         
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
         
@@ -63,10 +66,10 @@ class TeamsTableViewController: UITableViewController
             
                 if team.id != -1
                 {
-                    user.teams.append(team)
+                    teams.append(team)
                 
                     //Update View
-                    let indexPath = IndexPath (row: user.teams.count-1, section: 0)
+                    let indexPath = IndexPath (row: teams.count-1, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
                 }
             }
@@ -88,7 +91,7 @@ class TeamsTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return user.teams.count
+        return teams.count
     }
 
     
@@ -96,7 +99,7 @@ class TeamsTableViewController: UITableViewController
      {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamsTableViewCell
 
-        let team = user.teams[indexPath.row] as Team
+        let team = teams[indexPath.row] as Team
         cell.teamNameLabel.text = team.name
         cell.idLabel.text = String(team.id)
         cell.leagueIdLabel.text = String(team.league_id)
