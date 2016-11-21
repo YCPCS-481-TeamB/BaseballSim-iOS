@@ -37,7 +37,6 @@
 		3C680E101DAF710200A9F092 /* TeamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E0F1DAF710200A9F092 /* TeamsTableViewCell.swift */; };
 		3C680E121DAF77E700A9F092 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E111DAF77E700A9F092 /* GamesTableViewController.swift */; };
 		3C680E141DAF780D00A9F092 /* GamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C680E131DAF780D00A9F092 /* GamesTableViewCell.swift */; };
-		3C913C501DD7F2B800C11713 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C913C4F1DD7F2B800C11713 /* LaunchScreenViewController.swift */; };
 		3CEA0C971DE24DE1004316B8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA0C961DE24DE0004316B8 /* TabBarController.swift */; };
 		3CEA0C991DE24E7E004316B8 /* UIImage+ImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA0C981DE24E7E004316B8 /* UIImage+ImageColor.swift */; };
 /* End PBXBuildFile section */
@@ -87,7 +86,6 @@
 		3C680E0F1DAF710200A9F092 /* TeamsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsTableViewCell.swift; sourceTree = "<group>"; };
 		3C680E111DAF77E700A9F092 /* GamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
 		3C680E131DAF780D00A9F092 /* GamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewCell.swift; sourceTree = "<group>"; };
-		3C913C4F1DD7F2B800C11713 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		3CEA0C961DE24DE0004316B8 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3CEA0C981DE24E7E004316B8 /* UIImage+ImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,7 +169,6 @@
 				3C5AA40A1DD0749A002C64D6 /* InboxTableViewController.swift */,
 				3C5AA40C1DD42235002C64D6 /* PlayViewController.swift */,
 				1E411AA01DD6553F00E06858 /* GameViewController.swift */,
-				3C913C4F1DD7F2B800C11713 /* LaunchScreenViewController.swift */,
 				3CEA0C961DE24DE0004316B8 /* TabBarController.swift */,
 			);
 			name = controller;
@@ -312,7 +309,6 @@
 				3C5AA40D1DD42236002C64D6 /* PlayViewController.swift in Sources */,
 				1E411AA11DD6553F00E06858 /* GameViewController.swift in Sources */,
 				3C5404BC1DD0578800253A00 /* ApprovalService.swift in Sources */,
-				3C913C501DD7F2B800C11713 /* LaunchScreenViewController.swift in Sources */,
 				3C3C4A991DAF8639001440C8 /* ApiRoutes.swift in Sources */,
 				3C680E051DAED7CF00A9F092 /* Team.swift in Sources */,
 				3C5AA40B1DD0749A002C64D6 /* InboxTableViewController.swift in Sources */,

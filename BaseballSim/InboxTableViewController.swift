@@ -10,6 +10,9 @@ import UIKit
 
 class InboxTableViewController: UITableViewController
 {
+    // MARK: Properties
+    @IBOutlet weak var inboxIndicator: UIActivityIndicatorView!
+    
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var approvalService = ApprovalService(auth_token: "")
     var approvals:[Approval] = []
@@ -35,9 +38,15 @@ class InboxTableViewController: UITableViewController
     
     override func viewDidAppear(_ animated: Bool)
     {
+        // Show indicator
+        inboxIndicator.isHidden = false
+        
         //Update approvals
         approvals = approvalService.getApprovals()
         approvals.reverse()
+        
+        inboxIndicator.isHidden = true
+        
         self.tableView.reloadData()
     }
 

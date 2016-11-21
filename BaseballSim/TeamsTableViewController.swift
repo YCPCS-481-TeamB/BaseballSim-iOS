@@ -14,6 +14,7 @@ class TeamsTableViewController: UITableViewController
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var leagueIdLabel: UILabel!
+    @IBOutlet weak var teamIndicator: UIActivityIndicatorView!
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
@@ -39,12 +40,24 @@ class TeamsTableViewController: UITableViewController
             }
         }
         
-        teams = userService.getUserTeams(user_id: user.id)
-        
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: user)
         
         defaults.setValue(encodedData, forKey: "user")
         defaults.synchronize()
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        // Show indicator
+        teamIndicator.isHidden = false
+        
+        // Update Teams
+        teams = userService.getUserTeams(user_id: user.id)
+        
+        // Hide indicator
+        teamIndicator.isHidden = true
+        
+        self.tableView.reloadData()
     }
     
     @IBAction func cancelAddTeam(segue:UIStoryboardSegue)
