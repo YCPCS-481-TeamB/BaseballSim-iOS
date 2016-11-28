@@ -163,6 +163,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50358170270000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="dWp-rk-aOB" id="p9S-8X-Uuy"/>
+                        <outlet property="firstNameTextField" destination="fpB-QF-oFL" id="ets-3K-73k"/>
+                        <outlet property="lastNameTextField" destination="yWU-Wz-rMc" id="Zmw-KV-x0V"/>
+                        <outlet property="passwordTextField" destination="XP8-Sf-yb2" id="Qpt-rV-ku8"/>
+                        <outlet property="usernameTextField" destination="9Bg-ln-iEe" id="2sI-MJ-rUN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ur-fH-Rwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

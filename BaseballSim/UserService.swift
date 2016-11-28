@@ -15,6 +15,7 @@ class UserService
     var apiRoutes:ApiRoutes
     var loginUrls:[String]!
     var loginParams:[String:String]!
+    var signUpParams:[String:String]!
     var loginHeaders:[String:String]!
     var dataParams:[String:String]!
     var dataHeaders:[String:String]!
@@ -28,6 +29,7 @@ class UserService
         self.apiRoutes = ApiRoutes()
         self.loginUrls = ["users/token", "users", "teams", "games"]
         self.loginParams = ["username":"koopaluigi", "password":"toadstool"]
+        self.signUpParams = ["username":"", "password":"", "firstname":"", "lastname":"", "email":""]
         self.loginHeaders = [:]
         self.dataParams = [:]
         self.dataHeaders = ["x-access-token":""]
@@ -201,6 +203,42 @@ class UserService
         
         //user.printVals()
         return ""
+    }
+    
+    func signUp(username:String, password:String, firstName:String, lastName:String, email:String)
+    {
+        /*
+        //False login if username or password is empty, return error
+        if username == ""
+        {
+            self.error = "You must enter a username!"
+            return error
+        }
+        if password == ""
+        {
+            self.error = "You must enter a password!"
+            return error
+        }
+        */
+        let request = DispatchGroup.init()
+        
+        //Gets token of user if user exists
+        
+        let url = apiRoutes.user.createUser
+        signUpParams.updateValue(username, forKey: "username")
+        signUpParams.updateValue(password, forKey: "password")
+        signUpParams.updateValue(firstName, forKey: "firstname")
+        signUpParams.updateValue(lastName, forKey: "lastname")
+        signUpParams.updateValue(email, forKey: "email")
+        
+        request.enter()
+        
+        requests.postRequest(url: url, params: signUpParams as [String : AnyObject]?, headers: loginHeaders, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
     }
     
     //Go through the http requests to get all the information for user data
