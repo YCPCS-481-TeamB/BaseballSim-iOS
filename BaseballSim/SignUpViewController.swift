@@ -34,6 +34,7 @@ class SignUpViewController: UIViewController
     {
         userService.signUp(username: usernameTextField.text!, password: passwordTextField.text!, firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!)
         
+        userService.login(username: usernameTextField.text!, password: passwordTextField.text!)        
         
         //Go to the logged in views and save user to disk
         let defaults = UserDefaults.standard
