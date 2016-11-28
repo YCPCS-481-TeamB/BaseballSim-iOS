@@ -75,6 +75,12 @@ class LoginViewController: UIViewController
             }
         }
     }
+    
+    @IBAction func signUpButton(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "signUp", sender: self)
+    }
+    
 
 }
 
