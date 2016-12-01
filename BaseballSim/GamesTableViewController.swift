@@ -29,7 +29,8 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
         super.viewDidLoad()
         
         self.refreshControl?.addTarget(self, action: #selector(GamesTableViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
-
+        self.refreshControl?.tintColor = UIColor.white
+        
         //Get user info
         let defaults = UserDefaults.standard
         let key = "user"
@@ -146,6 +147,10 @@ class GamesTableViewController: UITableViewController, UITabBarDelegate
         cell.gameIdLabel.text = String(game.id)
         
         cell.layer.borderWidth = 0.6;
+        cell.backgroundColor = UIColor(red: 0.13, green: 0.55, blue: 0.13, alpha: 1.0)
+        cell.team1IdLabel.textColor = UIColor.white
+        cell.team2IdLabel.textColor = UIColor.white
+        cell.gameIdLabel.textColor = UIColor.white
 
         return cell
     }
