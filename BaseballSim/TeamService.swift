@@ -100,4 +100,42 @@ class TeamService
         }
         return team
     }
+    
+    func getAllTeams() -> [Team]
+    {
+        var team = Team(id: -1, league_id: -1, name: "", date_created: "")
+        var teams:[Team] = []
+        let request = DispatchGroup.init()
+        
+        let url = apiRoutes.team.allTeams
+        
+        request.enter()
+        
+        requests.getRequest(url: url, params: (params as [String : AnyObject]?)!, headers: headers, finished: {
+            () in
+            request.leave()
+        })
+        
+        request.wait()
+        
+        if((requests.getDictionary["teams"]! as AnyObject).count != 0)
+        {
+            let teamVal = requests.getDictionary.value(forKey: "teams")! as AnyObject
+            
+            //Find user within user
+            for i in 0...(teamVal.count-1)
+            {
+                let innerVal = (teamVal as! NSArray)[i] as AnyObject
+                
+                let id = innerVal.value(forKey: "id") as! Int
+                let league_id = innerVal.value(forKey: "league_id") as! Int
+                let name = innerVal.value(forKey: "name") as! String
+                let date_created = innerVal.value(forKey: "date_created") as! String
+                team = Team(id: id, league_id: league_id, name: name, date_created: date_created)
+                teams.append(team)
+            }
+        }
+        return teams
+    }
+
 }

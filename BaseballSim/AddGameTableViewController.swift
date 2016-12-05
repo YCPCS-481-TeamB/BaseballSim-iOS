@@ -11,16 +11,17 @@ import UIKit
 class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
     // MARK: Properties
-    @IBOutlet weak var team1TextField: UITextField!
     @IBOutlet weak var team1PickerView: UIPickerView!
-    @IBOutlet weak var team2TextField: UITextField!
+    @IBOutlet weak var team2PickerView: UIPickerView!
     
     
     
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var game:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var userService = UserService()
+    var teamService = TeamService(auth_token: "")
     var team1_data:[Team] = []
+    var team2_data:[Team] = []
     var team1_id:String = ""
     var team2_id:String = ""
     var team1_name = ""
@@ -33,6 +34,9 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         
         team1PickerView.dataSource = self
         team1PickerView.delegate = self
+        
+        team2PickerView.dataSource = self
+        team2PickerView.delegate = self
 
         //Get user info
         let defaults = UserDefaults.standard
@@ -42,6 +46,7 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
             if let value = defaults.object(forKey: key) as? NSData
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
+                teamService = TeamService(auth_token: user.auth_token)
             }
         }
     }
@@ -50,6 +55,29 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
     {
         team1_data = userService.getUserTeams(user_id: user.id)
         team1 = team1_data[0]
+        
+        let tempData = teamService.getAllTeams()
+        for team in tempData
+        {
+            var isUsersTeam = false
+            for innerTeam in team1_data
+            {
+                if team.id == innerTeam.id
+                {
+                    isUsersTeam = true
+                    break
+                }
+                else
+                {
+                    isUsersTeam = false
+                }
+            }
+            if !isUsersTeam
+            {
+                team2_data.append(team)
+            }
+        }
+        team2 = team2_data[0]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -60,7 +88,7 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         }
         if indexPath.section == 1
         {
-            team2TextField.becomeFirstResponder()
+            team2PickerView.becomeFirstResponder()
         }
     }
     
@@ -78,7 +106,7 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         }
         else
         {
-            return 5
+            return team2_data.count
         }
     }
     
@@ -91,7 +119,7 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         }
         else
         {
-            return "5"
+            return team2_data[row].name
         }
     }
     
@@ -103,7 +131,7 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         }
         else
         {
-            //team2_name = data[row]
+            team2 = team2_data[row]
         }
     }
     
@@ -111,8 +139,7 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
     {
         //Set variables for adding game
         team1_id = String(team1.id)
-        //team2_id = String(team2.id)
-        team2_id = "84"
+        team2_id = String(team2.id)
     }
 
     override func didReceiveMemoryWarning() {
