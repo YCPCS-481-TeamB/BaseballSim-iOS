@@ -46,11 +46,11 @@ class Request
                 return
             }
             
-            /*
+            
             //Print out the response from the server for debugging
             let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
-            */
+            print("responseGetString = \(responseString)")
+ 
             
             var get:NSDictionary = [:]
             
@@ -116,7 +116,7 @@ class Request
             
             //Print out the response from the server for debugging
             let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
+            print("responsePostString = \(responseString)")
             
             
             var post:NSDictionary = [:]

@@ -24,15 +24,17 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var inningLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     
-    
-    var items: [String] = ["A", "B", "C"]
-    
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
+    var userService = UserService()
     var gameService = GameService(auth_token: "")
+    var approvalService = ApprovalService(auth_token: "")
     var game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var gameAction = GameAction(id: -1, game_id: -1, team_at_bat: -1, team1_score: -1, team2_score: -1, balls: -1, strikes: -1, outs: -1, inning: -1, type: "", message: "", date_created: "")
     var gameEvents:[GameAction] = []
     var gamePosition = GamePosition(id: -1, game_action_id: -1, onfirst_id: -1, onsecond_id: -1, onthird_id: -1, date_created: "")
+    var user_teams:[Team] = []
+    var approvals:[Approval] = []
+    var at_bat = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,8 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 user = NSKeyedUnarchiver.unarchiveObject(with: value as Data) as! User
                 gameService = GameService(auth_token: user.auth_token)
+                approvalService = ApprovalService(auth_token: user.auth_token)
+                user_teams = userService.getUserTeams(user_id: user.id)
             }
         }
         
@@ -88,27 +92,56 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         //Create next event
         gameService.nextEvent(game: game)
-        
         gameAction = gameService.getLatestEvent(game: game)
-        gameEvents.insert(gameAction, at: 0)
         
-        inningLabel.text = String(gameAction.inning)
-        team1Label.text = String(gameAction.team1_score)
-        team2Label.text = String(gameAction.team2_score)
-        ballsLabel.text = String(gameAction.balls)
-        strikesLabel.text = String(gameAction.strikes)
-        outsLabel.text = String(gameAction.outs)
-        teamAtBatLabel.text = "Team at Bat: \(gameAction.team_at_bat)"
-        
-        gamePosition = gameService.getLatestPosition(game: game)
-        base1Label.text = String(gamePosition.onfirst_id)
-        base2Label.text = String(gamePosition.onsecond_id)
-        base3Label.text = String(gamePosition.onthird_id)
-
-        
-        //Update TableView
-        let indexPath = IndexPath (row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+        for team in user_teams
+        {
+            if team.id == gameAction.team_at_bat
+            {
+                at_bat = true
+                approvals = approvalService.getApprovals()
+                if !approvals.isEmpty
+                {
+                    let approval_id = String(approvals.first!.id)
+                    approvalService.approve(id: approval_id)
+                    
+                    gameEvents.insert(gameAction, at: 0)
+                    
+                    inningLabel.text = String(gameAction.inning)
+                    team1Label.text = String(gameAction.team1_score)
+                    team2Label.text = String(gameAction.team2_score)
+                    ballsLabel.text = String(gameAction.balls)
+                    strikesLabel.text = String(gameAction.strikes)
+                    outsLabel.text = String(gameAction.outs)
+                    teamAtBatLabel.text = "Team at Bat: \(gameAction.team_at_bat)"
+                    
+                    gamePosition = gameService.getLatestPosition(game: game)
+                    base1Label.text = String(gamePosition.onfirst_id)
+                    base2Label.text = String(gamePosition.onsecond_id)
+                    base3Label.text = String(gamePosition.onthird_id)
+                    
+                    //Update TableView
+                    let indexPath = IndexPath (row: 0, section: 0)
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+                break
+            }
+            else
+            {
+                at_bat = false
+            }
+            
+            if !at_bat
+            {
+                let gameAlert = UIAlertController(title: "Other Teams Turn", message: "Wait for the other player to complete their inning!", preferredStyle: UIAlertControllerStyle.alert)
+                
+                gameAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: {  (action: UIAlertAction!) in
+                }))
+                
+                present(gameAlert, animated: true, completion: nil)
+            }
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
