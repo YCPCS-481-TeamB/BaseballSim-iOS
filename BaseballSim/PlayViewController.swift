@@ -94,6 +94,29 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
         gameService.nextEvent(game: game)
         gameAction = gameService.getLatestEvent(game: game)
         
+        if gameAction.message == "Game Over!"
+        {
+            var message = ""
+            if gameAction.team1_score > gameAction.team2_score
+            {
+                message = "Congratulations You Won!"
+            }
+            else if gameAction.team1_score < gameAction.team2_score
+            {
+                message = "You Lost! Better Luck Next Time!"
+            }
+            else
+            {
+                message = "You Tied!"
+            }
+            let gameAlert = UIAlertController(title: "Game Over", message: message, preferredStyle: UIAlertControllerStyle.alert)
+            
+            gameAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: {  (action: UIAlertAction!) in
+            }))
+            
+            present(gameAlert, animated: true, completion: nil)
+        }
+        
         for team in user_teams
         {
             if team.id == gameAction.team_at_bat
@@ -133,6 +156,17 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if !at_bat
             {
+                inningLabel.text = String(gameAction.inning)
+                team1Label.text = String(gameAction.team1_score)
+                team2Label.text = String(gameAction.team2_score)
+                ballsLabel.text = "0"
+                strikesLabel.text = "0"
+                outsLabel.text = "0"
+                teamAtBatLabel.text = "Team at Bat: \(gameAction.team_at_bat)"
+                base1Label.text = "   -"
+                base2Label.text = "   -"
+                base3Label.text = "   -"
+                
                 let gameAlert = UIAlertController(title: "Other Teams Turn", message: "Wait for the other player to complete their inning!", preferredStyle: UIAlertControllerStyle.alert)
                 
                 gameAlert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: {  (action: UIAlertAction!) in
