@@ -14,8 +14,6 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
     @IBOutlet weak var team1PickerView: UIPickerView!
     @IBOutlet weak var team2PickerView: UIPickerView!
     
-    
-    
     var user:User = User(id: -1, first_name: "", last_name: "", username: "", email: "", date_created: "", auth_token: "", teams: [], games: [], approvals: [])
     var game:Game = Game(id: -1, league_id: -1, field_id: -1, team1_id: -1, team2_id: -1, date_created: "")
     var userService = UserService()
@@ -80,6 +78,12 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         team2 = team2_data[0]
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         if indexPath.section == 0
@@ -132,6 +136,22 @@ class AddGameTableViewController: UITableViewController, UIPickerViewDelegate, U
         else
         {
             team2 = team2_data[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString?
+    {
+        if pickerView.tag == 1
+        {
+            let data = team1_data[row].name
+            let title = NSAttributedString(string: data, attributes: [NSForegroundColorAttributeName:UIColor.white])
+            return title
+        }
+        else
+        {
+            let data = team2_data[row].name
+            let title = NSAttributedString(string: data, attributes: [NSForegroundColorAttributeName:UIColor.white])
+            return title
         }
     }
     
