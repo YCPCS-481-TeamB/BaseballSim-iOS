@@ -76,10 +76,10 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GameActionTableViewCell
         
         let gameAction = self.gameEvents[indexPath.row]
-        cell.textLabel?.text = gameAction.message
+        cell.messageLabel?.text = gameAction.message
         
         cell.layer.borderWidth = 0.6;
         

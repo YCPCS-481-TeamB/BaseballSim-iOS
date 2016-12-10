@@ -185,14 +185,14 @@ class PlayViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayCell", for: indexPath) as! GameActionTableViewCell
         
         let gameAction = self.gameEvents[indexPath.row]
-        cell.textLabel?.text = gameAction.message
+        cell.messageLabel?.text = gameAction.message
         
         cell.layer.borderWidth = 0.6;
         cell.backgroundColor = UIColor(red: 0.13, green: 0.55, blue: 0.13, alpha: 1.0)
-        cell.textLabel?.textColor = UIColor.white
+        cell.messageLabel?.textColor = UIColor.white
         
         return cell
     }
